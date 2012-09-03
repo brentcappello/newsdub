@@ -1,0 +1,74 @@
+{#{% extends "base.html" %}#}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/registration.css" />
+{% endblock %}
+
+{% block content %}
+    <div class="row" id="registration">
+        <div class="column grid_12">
+            <h1>Newsdub registration</h1>
+            <p>Please fill the form below to register yourself for NewsDub</p>
+            <form method="post" action="">
+                {% csrf_token %}
+                {% if form.errors %}<p>Please correct the following fields</p>{% endif %}
+                <div class align="register_div">
+                    {% if form.first_name.errors %}<p class="error">{{ form.first_name.errors }}</p>{% endif %}
+                    <p><label for="first_name"{% if form.first_name.errors %} class="error" {% endif %}>First Name:</label></p>
+                    <p>{{ form.first_name }}</p>
+                </div>
+
+                <div class align="register_div">
+                    {% if form.last_name.errors %}<p class="error">{{ form.last_name.errors }}</p>{% endif %}
+                    <p><label for="last_name"{% if form.last_name.errors %} class="error" {% endif %}>Last Name:</label></p>
+                    <p>{{ form.last_name }}</p>
+                </div>
+
+                <div class="register_div">
+                    {% if form.email.errors %}<p class="error">{{ form.email.errors }}</p>{% endif %}
+                    <p><label for="email"{% if form.email.errors %} class="error" {% endif %}>Email:</label></p>
+                    <p>{{ form.email }}</p>
+                </div>
+
+                <div class="register_div">
+                    {% if form.phone.errors %}<p class="error">{{ form.phone.errors }}</p>{% endif %}
+                    <p><label for="phone"{% if form.phone.errors %} class="error" {% endif %}>Phone Number:</label></p>
+                    <p>{{ form.phone }}</p>
+                </div>
+
+                <div class="register_div">
+                    {% if form.website.errors %}<p class="error">{{ form.website.errors }}</p>{% endif %}
+                    <p><label for="website"{% if form.website.errors %} class="error" {% endif %}>Website:</label></p>
+                    <p>{{ form.website }}</p>
+                </div>
+
+                <div class align="register_div">
+                    {% if form.username.errors %}<p class="error">{{ form.username.errors }}</p>{% endif %}
+                    <p><label for="username"{% if form.username.errors %} class="error" {% endif %}>Username:</label></p>
+                    <p>{{ form.username }}</p>
+                </div>
+
+                <div class="register_div">
+                    {% if form.password1.errors %}<p class="error">{{ form.password1.errors }}</p>{% endif %}
+                    <p><label for="password1"{% if form.password1.errors %} class="error" {% endif %}>Password:</label></p>
+                    <p>{{ form.password1 }}</p>
+                </div>
+
+                <div class="register_div">
+                    {% if form.password2.errors %}<p class="error">{{ form.password2.errors }}</p>{% endif %}
+                    <p><label for="password2"{% if form.password2.errors %} class="error" {% endif %}>Repeat Password:</label></p>
+                    <p>{{ form.password2 }}</p>
+                </div>
+                <div class="register_div">
+                    {% if form.membership.errors %}<p class="error">{{ form.membership.errors }}</p>{% endif %}
+                    <p><label for="password2"{% if form.membership.errors %} class="error" {% endif %}>Choose Your Membership Level:</label></p>
+                    <p>{{ form.membership }}</p>
+                </div>
+
+
+
+                <button type="submit" class="btn">Save</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

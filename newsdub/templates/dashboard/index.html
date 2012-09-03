@@ -1,0 +1,17 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>NewsDub Dashboard</title>
+</head>
+<body>
+{% if user.is_authenticated %}
+Welcome {{ user.first_name }} Your website is {{ profile.website }} and your phone is {{ profile.phone }}
+    <br/>
+    <a href="{% url edit-profile %}">click here to edit your profile!</a>
+{% else %}
+Please log in.
+{% endif %}
+
+</body>
+</html>

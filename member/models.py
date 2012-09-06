@@ -10,6 +10,9 @@ class MemberProfile(models.Model):
     phone = models.CharField(max_length=20, blank=True)
     website = models.CharField(max_length=100, blank=True)
 
+#    class Meta:
+#        permissions = (('view_content', 'Can see available content'),)
+
     def __unicode__(self):
         return self.name
 

@@ -10,8 +10,6 @@ class LoginRequiredMixin(object):
     def dispatch(self, *args, **kwargs):
         return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
 
-#class DashBoardView(LoginRequiredMixin, TemplateView):
-#    pass
 
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard/index.html'

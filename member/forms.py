@@ -16,9 +16,13 @@ class UserRegistrationForm(RegistrationForm):
 #https://docs.djangoproject.com/en/dev/topics/forms/modelforms/ I think inline formsets may resolve this.
 
 class ProfileForm(ModelForm):
-
     class Meta:
         model = MemberProfile
-        exclude = ('user',)
+        exclude = ('user', 'name',)
 
+class UserForm(ModelForm):
+    email = forms.EmailField(required=True)
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email',)
 

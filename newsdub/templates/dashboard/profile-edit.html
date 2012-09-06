@@ -10,10 +10,12 @@
     <div class="row">
         <div class="column grid_12">
             <h1>Edit Profile</h1>
+            <p>{{ update_message }}</p>
             <form id="profile_form" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 {{ forms.as_p }}
+                {{ change.as_p }}
                 <button class="btn" type="submit">{% trans "Save" %}</button>
             </form>
         </div>

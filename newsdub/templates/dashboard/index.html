@@ -5,8 +5,10 @@
     <title>NewsDub Dashboard</title>
 </head>
 <body>
+{% load custom_filters %}
 {% if user.is_authenticated %}
 Welcome {{ user.first_name }} Your website is {{ profile.website }} and your phone is {{ profile.phone }}
+    your membership type is: {% if user|in_group:"2" %}  Paid Member {% endif %} {% if user|in_group:"1" %}  Free Member {% endif %}
     <br/>
     <a href="{% url edit-profile %}">click here to edit your profile!</a>
 {% else %}

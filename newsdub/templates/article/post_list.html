@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>NewsDub Dashboard</title>
+</head>
+<body>
+{% load switchcase %}
+{% load custom_filters %}
+{% if user.is_authenticated %}
+{#    <ul>#}
+{#    {% for post in object_list %}#}
+{#       <li> Title: <a href="{{ object.get_absolute_url }}">{{ post.title }}</a>, Posted on: {{ post.publish|date:"M/d" }}</li>#}
+{#    {% endfor %}#}
+{#    </ul>#}
+
+    <h1>Your Posts</h1>
+
+{#    {% if blogs %}#}
+        <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="700px">
+            <th>Title</th>{{ STATIC_URL }}
+            <th>Published On</th>
+            <th>Status</th>
+            <th></th>
+            {% for post in object_list %}
+                <tr class="{% cycle odd,even %}">
+                    <td><b><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></b><br />
+                        {% with post.tease|truncatewords:"50" as body %}
+                                {{ body|force_escape|linebreaks|safe }}
+                        {% endwith %}
+                    </td>
+                    <td nowrap>{{ post.publish|date }}</td>
+                    <td>
+                        {% with post.status as status %}
+                            {% switch status %}
+                                {% case 2 %}Published{% endcase %}
+                                {% case 1 %}Draft{% endcase %}
+                            {% endswitch %}
+                        {% endwith %}
+                    </td>
+                    <td width="50px" align="center">
+                        <a href="{#{% url blog_edit post.id %}#}#">
+                            <img src="{{ STATIC_URL }}images/pencil.png" border="0" title="Edit Post"  />
+                        </a>
+                    </td>
+                    <td align="right">
+                        <form action="{#{% url blog_destroy post.id %}#}#" method="POST">
+                            <input type="image" src="{{ STATIC_URL }}images/delete.png" border="0" title="Delete Post" />
+                            <input type="hidden" name="action" value="delete"/>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+{#    {% else %}#}
+{#        No blog posts yet.#}
+{#    {% endif %}#}
+
+
+{% else %}
+Please log in.
+{% endif %}
+
+</body>
+</html>

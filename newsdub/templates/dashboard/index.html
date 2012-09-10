@@ -7,10 +7,14 @@
 <body>
 {% load custom_filters %}
 {% if user.is_authenticated %}
-Welcome {{ user.first_name }} Your website is {{ profile.website }} and your phone is {{ profile.phone }}
-    your membership type is: {% if user|in_group:"2" %}  Paid Member {% endif %} {% if user|in_group:"1" %}  Free Member {% endif %}
+Welcome back {{ user.first_name }}!
     <br/>
-    <a href="{% url edit-profile %}">click here to edit your profile!</a>
+    <ul>
+    <li>Click Here to view your Profile:<a href="{% url account %}">My Profile</a> </li>
+    <li>Click here to add an article:<a href="{% url post %}">Write an Article</a></li>
+    <li>Click here to view your articles:<a href="{% url post_list %}">View Article list</a></li>
+    </ul>
+
 {% else %}
 Please log in.
 {% endif %}

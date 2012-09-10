@@ -14,17 +14,20 @@ class LoginRequiredMixin(object):
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard/index.html'
 
-    #Just a note: I could have also called the MemberProfile
-    #objects directly in the template by using {{ user.get_profile.website }}
+
+
+
+
+
+class AccountView(LoginRequiredMixin, TemplateView):
+    template_name = 'dashboard/profile.html'
 
     def member_view(self):
         self.member = self.request.user.get_profile()
         return self.member
 
     def get_context_data(self, *args, **kwargs):
-        context = super(DashboardView, self).get_context_data(*args, **kwargs)
+        context = super(AccountView, self).get_context_data(*args, **kwargs)
         context['profile'] = self.member_view()
         return context
-
-
 

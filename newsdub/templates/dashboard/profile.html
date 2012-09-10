@@ -1,23 +1,45 @@
-{% load i18n %}
-
-{% block css %}
-{#    {{ block.super }}#}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/profile.css" type="text/css" />
-{% endblock %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<head>
+    <title>NewsDub Dashboard</title>
+</head>
 <body>
-{% block content %}
-    <div class="row">
-        <div class="column grid_12">
-            <h1>Edit Profile</h1>
-            <form id="profile_form" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                {{ forms.as_p }}
-                <button class="btn" type="submit">{% trans "Save" %}</button>
-            </form>
-        </div>
-    </div>
-{% endblock %}
+{% load custom_filters %}
+{% if user.is_authenticated %}
+    <h2>Your Personal Information</h2>
+    <ul>
+        <li>Name: {{ user.get_full_name }}</li>
+        <li>Username: {{ user.username }}</li>
+    </ul>
+    <ul>
+        <li>Email: {{ user.email }}</li>
+        <li>Phone: {{ profile.phone }}</li>
+    </ul>
+    <ul>
+        <li>Website: {{ profile.website }}</li>
+    </ul>
+    <a href="{% url edit-profile %}">Change Personal Information</a>
+    <h2>Your Account Details</h2>
+    <ul>
+        <li>Account Type: {% if user|in_group:"2" %} Paid Member {% endif %} {% if user|in_group:"1" %}
+            Free Member <a href="#">Click Here to Upgrade</a>  {% endif %}</li>
+        <li>Account Usage: "This will have %"</li>
+        <li>Date Joined: {{ user.date_joined }}</li>
+    </ul>
+    <h2>Sender Settings</h2>
+    <ul><p>YourEmail Senders</p>
+        <li>Infusionsoft</li>
+        <li>Mail Chimp</li>
+    </ul>
+    <h2>System Settings</h2>
+    <ul>
+        <li><a href="{% url change-password%}">Change Password</a></li>
+        <li>Timezone: PST</li>
+    </ul>
+{% else %}
+    Please log in.
+{% endif %}
+
 </body>
 </html>

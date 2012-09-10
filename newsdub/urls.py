@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
-#from registration.forms import RegistrationFormTermsOfService
 from django.contrib.auth.views import password_reset, password_reset_confirm
 import registration.backends.default.urls as regUrls
 from member.regbackend import UserRegistrationForm
@@ -8,6 +7,7 @@ from registration.views import register
 
 from core.views import HomeView
 
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from django.contrib import admin
 admin.autodiscover()
@@ -15,6 +15,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^dashboard/', include('dashboard.urls')),
+    url(r'^articles/', include('article.urls')),
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'extra_context': {'registration_form': UserRegistrationForm()}}, name='auth_login'),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {"next_page": "/"}, name='auth_logout'),
@@ -26,3 +27,4 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 )
+

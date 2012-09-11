@@ -9,9 +9,9 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.models import User
 
 
-#this form was written from video by pydanny at djangocon 2011
+
 def post_create(request, template_name='article/post_form.html'):
-    form = PostForm(request.POST or None, user=request.user)
+    form = PostForm(request.POST or None, request=request)
     if form.is_valid():
         article = form.save(commit=False)
         article.author = request.user

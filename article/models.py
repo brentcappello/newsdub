@@ -6,6 +6,30 @@ from django.contrib.auth.models import User
 
 from taggit.managers import TaggableManager
 
+
+class Newsletter(models.Model):
+    STATUS_CHOICES = (
+        (1, 'Draft'),
+        (2, 'Public')
+    )
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True)
+    description = models.TextField()
+    created_by = models.ForeignKey(User)
+    publish = models.DateTimeField(default=datetime.now)
+    created_at = models.DateTimeField(default=datetime.now)
+    status = models.IntegerField(choices=STATUS_CHOICES, default=2)
+
+    class Meta:
+        ordering = ['title']
+
+    def __unicode__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return '/newsletter/%s/' % self.slug
+
+
 class Post(models.Model):
     """Post Model."""
     STATUS_CHOICES = (
@@ -22,6 +46,7 @@ class Post(models.Model):
     allow_comments = models.BooleanField(default=True)
     publish = models.DateTimeField(default=datetime.now)
     created_at = models.DateTimeField(default=datetime.now)
+    newsletters = models.ManyToManyField(Newsletter)
     tags = TaggableManager()
     #    updated_at = models.DateTimeField(default=datetime.now)
 
@@ -42,6 +67,7 @@ class Post(models.Model):
 #            'month': '%02d' % self.publish.month,
             'slug': self.slug
         })
+
 
 
 

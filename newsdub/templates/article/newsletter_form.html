@@ -1,0 +1,23 @@
+{% load i18n %}
+
+{% block css %}
+    {#    {{ block.super }}#}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/profile.css" type="text/css" />
+{% endblock %}
+<html>
+<body>
+{% block content %}
+    <div class="row">
+        <div class="column grid_12">
+            <h1>Create a Newsletter</h1>
+            <li>Name: {{ user.get_full_name }}</li>
+            <form id="profile_form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn" type="submit">{% trans "Save" %}</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

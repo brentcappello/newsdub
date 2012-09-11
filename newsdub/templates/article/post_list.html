@@ -2,7 +2,7 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>NewsDub Dashboard</title>
+    <title>NewsDub Article List</title>
 </head>
 <body>
 {% load switchcase %}
@@ -39,13 +39,14 @@
                         {% endwith %}
                     </td>
                     <td width="50px" align="center">
-                        <a href="{#{% url blog_edit post.id %}#}#">
-                            <img src="{{ STATIC_URL }}images/pencil.png" border="0" title="Edit Post"  />
+                        <a href="{% url post_update post.slug %}">
+                            <img src="{{ STATIC_URL }}images/pencil.png" alt="edit" border="0" title="Edit Post"  />
                         </a>
                     </td>
                     <td align="right">
-                        <form action="{#{% url blog_destroy post.id %}#}#" method="POST">
-                            <input type="image" src="{{ STATIC_URL }}images/delete.png" border="0" title="Delete Post" />
+
+                        <form action="{% url post_delete post.slug %}" method="POST">{% csrf_token %}
+                            <input type="image" src="{{ STATIC_URL }}images/delete.png" alt="delete" border="0" title="Delete Post" />
                             <input type="hidden" name="action" value="delete"/>
                         </form>
                     </td>

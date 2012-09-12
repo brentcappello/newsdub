@@ -46,7 +46,7 @@ class Post(models.Model):
     allow_comments = models.BooleanField(default=True)
     publish = models.DateTimeField(default=datetime.now)
     created_at = models.DateTimeField(default=datetime.now)
-    newsletters = models.ManyToManyField(Newsletter)
+    newsletters = models.ManyToManyField(Newsletter, help_text='good job')
     tags = TaggableManager()
     #    updated_at = models.DateTimeField(default=datetime.now)
 

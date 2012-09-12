@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from article.models import Post, Newsletter
 from django.forms.fields import MultipleChoiceField
-from django.forms.widgets import CheckboxSelectMultiple
+from django.forms.widgets import CheckboxSelectMultiple, TextInput
 from django.forms import ModelChoiceField
 
 class NewsletterForm(ModelForm):
@@ -12,18 +12,21 @@ class NewsletterForm(ModelForm):
 
 
 class PostForm(ModelForm):
+#    newsletters = ModelChoiceField(Newsletter.objects.filter(created_by=None))
     class Meta:
         model = Post
         exclude = ('author', 'publish', 'created_at',)
         widgets = {
-            'newsletters': CheckboxSelectMultiple()
+            'newsletters': CheckboxSelectMultiple(),
+            'title': TextInput(attrs={'onkeyup':'updateslug()'})
         }
 
-    #this was tricky I needed to add the kwargs.pop in order to filter the field by request.user
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request')
-        super(PostForm, self).__init__(**kwargs)
-        self.fields['newsletters'].queryset = Newsletter.objects.filter(created_by=self.request.user)
+    #this took fucking foooooorever to figure out - I still not sure how it works lol.
+    def __init__(self, created_by=None, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.fields['newsletters'].queryset = Newsletter.objects.filter(created_by=created_by)
+
+
 
 
 

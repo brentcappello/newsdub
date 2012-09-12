@@ -1,5 +1,5 @@
 from dashboard.views import LoginRequiredMixin
-from article.models import Post
+from article.models import Post, Newsletter
 from article.forms import PostForm, NewsletterForm
 from django.views.generic.edit import ModelFormMixin
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
@@ -9,18 +9,39 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.models import User
 
 
-
+# OK this still confuses me how this works but my million
+# other tries did not
 def post_create(request, template_name='article/post_form.html'):
-    form = PostForm(request.POST or None, request=request)
-    if form.is_valid():
-        article = form.save(commit=False)
-        article.author = request.user
-        article.save()
-        form.save_m2m()
-        #        msg = "Article saved successfully"
-        #        messages.success(request, msg, fail_silently=True)
-        return redirect('post_list')
+    the_creator = request.user
+
+    if request.POST:
+        form = PostForm(the_creator, request.POST)
+        if form.is_valid():
+            article = form.save(commit=False)
+            article.author = request.user
+            article.save()
+            form.save_m2m()
+            #        msg = "Article saved successfully"
+            #        messages.success(request, msg, fail_silently=True)
+            return redirect('post_list')
+    else:
+        form = PostForm(the_creator)
     return render(request, template_name, {'form': form,})
+
+#def post_create(request):
+#    if request.method == 'POST':
+#        form = PostForm(request.POST)
+#        if form.is_valid():
+#            article = form.save(commit=False)
+#            article.author = request.user
+#            article.save()
+#            form.save_m2m()
+#            #        msg = "Article saved successfully"
+#            #        messages.success(request, msg, fail_silently=True)
+#            return redirect('post_list')
+#    else:
+#        form = PostForm(newsletter_user)
+#    return render(request, 'article/post_form.html', {'form': form,})
 
 def newsletter_create(request, template_name='article/newsletter_form.html'):
     form = NewsletterForm(request.POST or None)

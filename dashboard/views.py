@@ -15,10 +15,6 @@ class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard/index.html'
 
 
-
-
-
-
 class AccountView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard/profile.html'
 

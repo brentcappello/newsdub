@@ -6,7 +6,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -15,9 +15,10 @@
     <meta name="viewport" content="width=device-width">
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/normalize.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
+    {% block css %}{% endblock %}
     <script src="{{ STATIC_URL }}js/vendor/modernizr-2.6.1.min.js"></script>
     {% block js_top %}{% endblock %}
 </head>
@@ -27,15 +28,72 @@
         <![endif]-->
 <!-- Add your site or application content here -->
 <div id="container_header">
-    <div id="logo">
-        <a href="/">
-            <img src="/images/newsdub_logo.png" class="logo_img">
-        </a>
+    <div id="header_box">
+        <div id="logo">
+            <a href="{% url home %}">
+                <img src="/images/newsdub_logo.png" class="logo_img">
+            </a>
+        </div>
+        {% if user.is_authenticated %}
+            <div id="nav">
+                <ul>
+                    <li>
+                        <a href="{% url dashboard-index %}" class="">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{% url home %}" class="">Newsletters</a>
+                    </li>
+                    <li>
+                        <a href="/buzz" class="">People</a>
+                    </li>
+                    <li>
+                        <a href="{% url account %}" class="">Account</a>
+                    </li>
+                    <li>
+                        <a href="{% url account %}" class="">Settings</a>
+                    </li>
+                    <li>
+                        <a href="/help" class="">Help</a>
+                    </li>
+                </ul>
+            </div>
+        {% else %}
+        {% block navigation_top %}
+        <div id="nav">
+            <ul>
+                <li>
+                    <a href="/tour" class="">Take the tour</a>
+                </li>
+                <li>
+                    <a href="/plans" class="">Plans &amp; Pricing</a>
+                </li>
+                <li>
+                    <a href="/buzz" class="">Buzz</a>
+                </li>
+                <li>
+                    <a href="/team" class="">Team</a>
+                </li>
+                <li>
+                    <a href="/help" class="">Help</a>
+                </li>
+                <li>
+                    <a target="_blank" href="http://blog.newsdub.com">Blog</a>
+                </li>
+                <li>
+                    <a href="/lookup" class="">Sign In</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    {% block navigation_top %}{% endblock %}
+        {% endblock %}
+        {% endif %}
+</div>
+<div class="clearfix"></div>
+<div id="main_container">
+   {% block content %}{% endblock %}
 </div>
 
-{% block content %}{% endblock %}
+
 
 {#<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>#}
 {#<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>#}

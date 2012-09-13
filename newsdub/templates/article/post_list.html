@@ -1,24 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title>NewsDub Article List</title>
-</head>
-<body>
+{% extends 'base.html' %}
 {% load switchcase %}
 {% load custom_filters %}
-{% if user.is_authenticated %}
-{#    <ul>#}
-{#    {% for post in object_list %}#}
-{#       <li> Title: <a href="{{ object.get_absolute_url }}">{{ post.title }}</a>, Posted on: {{ post.publish|date:"M/d" }}</li>#}
-{#    {% endfor %}#}
-{#    </ul>#}
 
+{% block content %}
     <h1>Your Posts</h1>
-
-{#    {% if blogs %}#}
         <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="700px">
-            <th>Title</th>{{ STATIC_URL }}
+            <th>Title</th>
             <th>Published On</th>
             <th>Status</th>
             <th></th>
@@ -53,14 +40,5 @@
                 </tr>
             {% endfor %}
         </table>
-{#    {% else %}#}
-{#        No blog posts yet.#}
-{#    {% endif %}#}
 
-
-{% else %}
-Please log in.
-{% endif %}
-
-</body>
-</html>
+{% endblock %}

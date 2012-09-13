@@ -1,40 +1,7 @@
-
-<!-- This piece of JS was for forked from urlify.js
-this needs to be in static or fixtures-->
-
-<script type="text/javascript" charset="utf-8">
-
-    function updateslug(){
-        title = document.getElementById("id_title").value;
-//        title = title.replace(/\s+/g, '-').toLowerCase();
-        removelist = ["a", "an", "as", "at", "before", "but", "by", "for", "from",
-            "is", "in", "into", "like", "of", "off", "on", "onto", "per",
-            "since", "than", "the", "this", "that", "to", "up", "via",
-            "with"];
-        r = new RegExp('\\b(' + removelist.join('|') + ')\\b', 'gi');
-        title = title.replace(r, '');
-        // if downcode doesn't hit, the char will be stripped here
-        title = title.replace(/[^-\w\s]/g, ''); // remove unneeded chars
-        title = title.replace(/^\s+|\s+$/g, ''); // trim leading/trailing spaces
-        title = title.replace(/[-\s]+/g, '-'); // convert spaces to hyphens
-        title = title.toLowerCase(); // convert to lowercase
-        document.getElementById("id_slug").value = title;
-    }
-
-</script>
-
-
-
-
+{% extends 'base.html' %}
 
 {% load i18n %}
-
-{% block css %}
-    {#    {{ block.super }}#}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/profile.css" type="text/css" />
-{% endblock %}
-<html>
-<body>
+{% block js_top %}<script src="{{ STATIC_URL }}js/urlslugger.js"></script>{% endblock %}
 {% block content %}
     <div class="row">
         <div class="column grid_12">
@@ -48,5 +15,3 @@ this needs to be in static or fixtures-->
         </div>
     </div>
 {% endblock %}
-</body>
-</html>

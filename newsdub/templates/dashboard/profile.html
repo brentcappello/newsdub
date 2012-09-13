@@ -1,13 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title>NewsDub Dashboard</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
 {% load custom_filters %}
-{% if user.is_authenticated %}
-    <h2>Your Personal Information</h2>
+
+    <h1>Your Personal Information</h1>
     <ul>
         <li>Name: {{ user.get_full_name }}</li>
         <li>Username: {{ user.username }}</li>
@@ -37,9 +33,4 @@
         <li><a href="{% url change-password%}">Change Password</a></li>
         <li>Timezone: PST</li>
     </ul>
-{% else %}
-    Please log in.
-{% endif %}
-
-</body>
-</html>
+{% endblock %}

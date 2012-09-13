@@ -7,10 +7,11 @@ from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, re
 from django.http import Http404
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import login_required
 
 # OK this still confuses me how this works but my million
 # other tries did not
+@login_required
 def post_create(request, template_name='article/post_form.html'):
     the_creator = request.user
 
@@ -42,7 +43,7 @@ def post_create(request, template_name='article/post_form.html'):
 #    else:
 #        form = PostForm(newsletter_user)
 #    return render(request, 'article/post_form.html', {'form': form,})
-
+@login_required
 def newsletter_create(request, template_name='article/newsletter_form.html'):
     form = NewsletterForm(request.POST or None)
     if form.is_valid():

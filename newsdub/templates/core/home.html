@@ -1,3 +1,6 @@
-<p xmlns="http://www.w3.org/1999/html">Welcome home!</p>
+{% extends "base.html" %}
 
-<a href="{% url auth_login %}">Click here to login!</a>
+{% block content %}
+    <a href="{% url auth_login %}">Click here to login!</a>
+{% endblock %}
+

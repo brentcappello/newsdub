@@ -89,6 +89,71 @@ class PostListView(LoginRequiredMixin, ListView):
         return context
 
 
+
+
+class NewsletterListView(LoginRequiredMixin, ListView):
+    template_name = 'article/newsletter_list.html'
+
+    def get_queryset(self):
+        self.authorpost = Newsletter.objects.filter(created_by=self.request.user)
+        return self.authorpost
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(NewsletterListView, self).get_context_data(*args, **kwargs)
+        context['newsletter_list'] = self.authorpost
+        return context
+
+#I probably could have easily done this in a CBGV
+def newsletter_detail(request, slug):
+    newsletter = get_object_or_404(Newsletter, slug=slug)
+    return render(request, 'article/newsletter_post_list.html', {
+        'object_list': newsletter.post_set.all(),
+        'newsletter': newsletter,
+        })
+
+
+#class NewsletterPostListView(LoginRequiredMixin, ListView):
+#    template_name = 'article/newsletter_post_list.html'
+#
+##    def newsletter_view(self):
+##        self.newsletter = get_object_or_404(Newsletter, slug=slug)
+##        return self.member
+#    def get_queryset(self):
+#        self.newsletter = get_object_or_404(Newsletter, slug=self.slug)
+#        return models.Article.public.language(self.args[1]).filter(categories=self.category)
+#
+#    def get_context_data(self, *args, **kwargs):
+#        self.newsletters = get_object_or_404(Newsletter, slug=slug)
+#        context = super(NewsletterPostListView, self).get_context_data(*args, **kwargs)
+#        return context
+
+
+
+
+
+
+
+#class NewsletterPostListView(LoginRequiredMixin, ListView):
+#    template_name = 'article/newsletter_post_list.html'
+#
+#    def get_queryset(self):
+#        self.newsletter_articles = Post.objects.filter(newsletters=self.newsletter_articles)
+#        return self.newsletter_articles
+#
+#    def get_context_data(self, *args, **kwargs):
+#        context = super(NewsletterPostListView, self).get_context_data(*args, **kwargs)
+#        context['newsletter_post_list'] = self.newsletter_articles
+#        return context
+
+class NewsletterUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'article/newsletter_update.html'
+    model = Newsletter
+    form_class = NewsletterForm
+
+class NewsletterDeleteView(LoginRequiredMixin, DeleteView):
+    model = Newsletter
+    success_url = reverse_lazy('newsletter_list')
+
 class PostDetailView(LoginRequiredMixin, ListView):
     template_name = 'article/post_detail.html'
     model = Post

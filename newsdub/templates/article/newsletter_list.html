@@ -3,22 +3,20 @@
 {% load custom_filters %}
 
 {% block content %}
-    <h1>Your Articles</h1>
+    <h1>Your Newsletters</h1>
         <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="700px">
             <th>Title</th>
             <th>Published On</th>
             <th>Status</th>
             <th></th>
-            {% for post in object_list %}
+            {% for newsletter in object_list %}
                 <tr class="{% cycle odd,even %}">
-                    <td><b><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></b><br />
-                        {% with post.tease|truncatewords:"50" as body %}
-                                {{ body|force_escape|linebreaks|safe }}
-                        {% endwith %}
+                    <td><b><a href="{{ newsletter.get_absolute_url }}">{{ newsletter.title }}</a></b><br />
+
                     </td>
-                    <td nowrap>{{ post.publish|date }}</td>
+                    <td nowrap>{{ newsletter.publish|date }}</td>
                     <td>
-                        {% with post.status as status %}
+                        {% with newsletter.status as status %}
                             {% switch status %}
                                 {% case 2 %}Published{% endcase %}
                                 {% case 1 %}Draft{% endcase %}
@@ -26,13 +24,13 @@
                         {% endwith %}
                     </td>
                     <td width="50px" align="center">
-                        <a href="{% url post_update post.slug %}">
+                        <a href="{% url newsletter_update newsletter.slug %}">
                             <img src="{{ STATIC_URL }}images/pencil.png" alt="edit" border="0" title="Edit Post"  />
                         </a>
                     </td>
                     <td align="right">
 
-                        <form action="{% url post_delete post.slug %}" method="POST">{% csrf_token %}
+                        <form action="{% url newsletter_delete newsletter.slug %}" method="POST">{% csrf_token %}
                             <input type="image" src="{{ STATIC_URL }}images/delete.png" alt="delete" border="0" title="Delete Post" />
                             <input type="hidden" name="action" value="delete"/>
                         </form>

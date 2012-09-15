@@ -27,7 +27,7 @@ class Newsletter(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return '/newsletter/%s/' % self.slug
+        return self.slug
 
 
 class Post(models.Model):
@@ -61,7 +61,7 @@ class Post(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('blog_post', None, {
+        return ('post_detail', None, {
 #            'author': self.author.username,
 #            'year': self.publish.year,
 #            'month': '%02d' % self.publish.month,

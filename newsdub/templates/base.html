@@ -27,6 +27,14 @@
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
 <!-- Add your site or application content here -->
+{% if user.is_authenticated %}
+<div id="container-top">
+    <div class="content">
+        Hello {{ user.get_full_name}} -
+        <a href="{% url auth_logout %}">Logout</a>
+    </div>
+</div>
+{% endif %}
 <div id="container_header">
     <div id="header_box">
         <div id="logo">

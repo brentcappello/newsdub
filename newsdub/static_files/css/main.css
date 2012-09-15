@@ -93,7 +93,24 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-
+#container-top {
+    background-color: #404240;
+    font-family: Arial;
+    padding: 5px 0;
+    text-align: right;
+    width: 100%;
+}
+#container-top .content {
+    color: #FFFFFF;
+    font-size: 13px;
+    padding: 0 15px 0 0;
+}
+#container-top a {
+    color: #FFFFFF;
+}
+#container-top a:hover {
+    color: #FF0041;
+}
 #container_header {
     background-color: #2A2D2A;
     height: 100px;

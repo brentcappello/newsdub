@@ -33,10 +33,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/article/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="49" selection-start="3894" selection-end="3894" vertical-scroll-proportion="0.6302817">
+            <state line="114" column="60" selection-start="4214" selection-end="4214" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -67,7 +67,16 @@
       <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newsdub/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="5" selection-start="927" selection-end="999" vertical-scroll-proportion="-13.125">
+            <state line="32" column="39" selection-start="1528" selection-end="1528" vertical-scroll-proportion="-12.083333">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newsdub/static_files/css/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="108" column="19" selection-start="2152" selection-end="2152" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -100,10 +109,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/newsdub/templates/dashboard/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="56" selection-start="449" selection-end="468" vertical-scroll-proportion="-6.25">
+            <state line="14" column="0" selection-start="628" selection-end="628" vertical-scroll-proportion="0.2536232">
               <folding />
             </state>
           </provider>
@@ -121,7 +130,7 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newsdub/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="24" column="71" selection-start="1583" selection-end="1583" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -221,10 +230,8 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/dashboard/views.py" />
-        <option value="$PROJECT_DIR$/newsdub/static_files/css/main.css" />
         <option value="$PROJECT_DIR$/newsdub/templates/dashboard/profile-edit.html" />
         <option value="$PROJECT_DIR$/newsdub/templates/dashboard/profile.html" />
-        <option value="$PROJECT_DIR$/newsdub/templates/base.html" />
         <option value="$PROJECT_DIR$/newsdub/templates/article/post_form.html" />
         <option value="$PROJECT_DIR$/newsdub/static_files/js/urlslugger.js" />
         <option value="$PROJECT_DIR$/newsdub/templates/article/post_detail.html" />
@@ -236,6 +243,8 @@
         <option value="$PROJECT_DIR$/newsdub/templates/article/post_list.html" />
         <option value="$PROJECT_DIR$/newsdub/templates/article/newsletter_post_list.html" />
         <option value="$PROJECT_DIR$/article/views.py" />
+        <option value="$PROJECT_DIR$/newsdub/templates/base.html" />
+        <option value="$PROJECT_DIR$/newsdub/static_files/css/main.css" />
       </list>
     </option>
   </component>
@@ -433,6 +442,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="static_files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newsdub" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newsdub" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newsdub" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static_files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -793,20 +824,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/newsdub/templates/dashboard/profile-edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="186" selection-end="186" vertical-scroll-proportion="-5.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newsdub/templates/article/post_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="26" selection-end="26" vertical-scroll-proportion="-0.625">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/article/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -819,20 +836,6 @@
     <entry file="file://$PROJECT_DIR$/newsdub/templates/registration/registration_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="0" selection-start="1913" selection-end="1913" vertical-scroll-proportion="-8.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newsdub/templates/dashboard/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="56" selection-start="449" selection-end="468" vertical-scroll-proportion="-6.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newsdub/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="5" selection-start="927" selection-end="999" vertical-scroll-proportion="-13.125">
           <folding />
         </state>
       </provider>
@@ -869,15 +872,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/article/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="1" selection-start="1575" selection-end="1575" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/article/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="24" selection-start="795" selection-end="795" vertical-scroll-proportion="0.0">
@@ -910,10 +904,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/article/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="49" selection-start="3894" selection-end="3894" vertical-scroll-proportion="0.6302817">
+        <state line="114" column="60" selection-start="4214" selection-end="4214" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="1" selection-start="1575" selection-end="1575" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newsdub/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="71" selection-start="1583" selection-end="1583" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newsdub/static_files/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="108" column="19" selection-start="2152" selection-end="2152" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newsdub/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="39" selection-start="1528" selection-end="1528" vertical-scroll-proportion="-12.083333">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newsdub/templates/dashboard/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="628" selection-end="628" vertical-scroll-proportion="0.2536232">
+          <folding />
         </state>
       </provider>
     </entry>

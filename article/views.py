@@ -1,6 +1,6 @@
 from dashboard.views import LoginRequiredMixin
 from article.models import Post, Newsletter
-from article.forms import PostForm, NewsletterForm
+from article.forms import PostForm, NewsletterForm, PostFormUpdate
 from django.views.generic.edit import ModelFormMixin
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
@@ -161,7 +161,13 @@ class PostDetailView(LoginRequiredMixin, ListView):
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'article/post_update.html'
     model = Post
-    form_class = PostForm
+    form_class = PostFormUpdate
+
+    def get_form(self, form_class):
+        form = super(PostUpdateView,self).get_form(form_class) #instantiate using parent
+        form.fields['newsletters'].queryset = Newsletter.objects.filter(created_by=self.request.user)
+        return form
+
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post

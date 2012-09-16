@@ -1,0 +1,18 @@
+{% extends 'base_dashboard.html' %}
+
+{% load i18n %}
+{% block js_top %}<script src="{{ STATIC_URL }}js/urlslugger.js"></script>{% endblock %}
+{% block content %}
+    <title>{% block title %}Update an Article{% endblock %}</title>
+    <div class="row">
+        <div class="column grid_12">
+            <li>Name: {{ user.get_full_name }}</li>
+            <form id="profile_form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {{ form.newsletterz }}
+                <button class="btn" type="submit">{% trans "Save" %}</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -12,7 +12,6 @@ class NewsletterForm(ModelForm):
 
 
 class PostForm(ModelForm):
-#    newsletters = ModelChoiceField(Newsletter.objects.filter(created_by=None))
     class Meta:
         model = Post
         exclude = ('author', 'publish', 'created_at',)
@@ -28,5 +27,11 @@ class PostForm(ModelForm):
 
 
 
-
-
+class PostFormUpdate(ModelForm):
+    class Meta:
+        model = Post
+        exclude = ('author', 'publish', 'created_at',)
+        widgets = {
+            'newsletters': CheckboxSelectMultiple(),
+            'title': TextInput(attrs={'onkeyup':'updateslug()'})
+        }

@@ -1,9 +1,8 @@
-{% extends "base.html" %}
+{% extends "base_dashboard.html" %}
 
 {% block content %}
 {% load custom_filters %}
-
-    <h1>Your Personal Information</h1>
+    <title>{% block title %}Your Personal Settings{% endblock %}</title>
     <ul>
         <li>Name: {{ user.get_full_name }}</li>
         <li>Username: {{ user.username }}</li>

@@ -1,3 +1,5 @@
+{% extends "base_dashboard.html" %}
+
 {% load i18n %}
 
 {% block css %}
@@ -7,9 +9,9 @@
 <html>
 <body>
 {% block content %}
+    <title>{% block title %}Create a Newsletter{% endblock %}</title>
     <div class="row">
         <div class="column grid_12">
-            <h1>Create a Newsletter</h1>
             <li>Name: {{ user.get_full_name }}</li>
             <form id="profile_form" method="post">
                 {% csrf_token %}

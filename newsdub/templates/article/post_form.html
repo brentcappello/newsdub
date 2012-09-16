@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base_dashboard.html' %}
 
 {% load i18n %}
 {% block js_top %}<script src="{{ STATIC_URL }}js/urlslugger.js"></script>{% endblock %}
 {% block content %}
+    <title>{% block title %}Create an Article{% endblock %}</title>
     <div class="row">
         <div class="column grid_12">
-            <h1>Add Article</h1>
             <li>Name: {{ user.get_full_name }}</li>
             <form id="profile_form" method="post">
                 {% csrf_token %}

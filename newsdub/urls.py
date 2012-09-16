@@ -15,7 +15,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^dashboard/', include('dashboard.urls')),
-    url(r'^articles/', include('article.urls')),
+    url(r'^newsletters/', include('article.urls')),
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'extra_context': {'registration_form': UserRegistrationForm()}}, name='auth_login'),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {"next_page": "/"}, name='auth_logout'),

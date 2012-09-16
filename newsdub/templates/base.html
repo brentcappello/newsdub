@@ -3,6 +3,8 @@
 {% load i18n %}
 {#{% load setting %}#}
 
+{% url account as account %}
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -46,19 +48,19 @@
             <div id="nav">
                 <ul>
                     <li>
-                        <a href="{% url dashboard-index %}" class="">Dashboard</a>
+                        <a class="{% is_active request.path 'dashboard-index' %}" href="{% url dashboard-index %}" class="">Dashboard</a>
                     </li>
                     <li>
-                        <a href="{% url home %}" class="">Newsletters</a>
+                        <a class="{% is_newsletter request.path %}" href="{% url newsletter_list %}" class="">Newsletters</a>
                     </li>
                     <li>
-                        <a href="/buzz" class="">People</a>
+                        <a href="#" class="">People</a>
                     </li>
                     <li>
-                        <a href="{% url account %}" class="">Account</a>
+                        <a class="{% is_account request.path %}" href="{% url account %}" class="">Account</a>
                     </li>
                     <li>
-                        <a href="{% url account %}" class="">Settings</a>
+                        <a class="" href="{% url account %}" class="">Settings</a>
                     </li>
                     <li>
                         <a href="/help" class="">Help</a>
@@ -96,6 +98,8 @@
         {% endblock %}
         {% endif %}
 </div>
+<div class="clearfix"></div>
+{% block dashboard %}{% endblock %}
 <div class="clearfix"></div>
 <div id="main_container">
    {% block content %}{% endblock %}

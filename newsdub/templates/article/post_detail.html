@@ -1,9 +1,10 @@
 {% extends 'base_dashboard.html' %}
 
+<title>{% block title %}Article: {{ object.title|truncatechars:35 }}{% endblock %}</title>
+
 {% block content %}
-    <title>{% block title %}Article: {{ object.title|truncatechars:35 }}{% endblock %}</title>
     <h1>{{ object.title }}</h1>
-    <p>{{ object.body }}</p>
+    <p>{{ object.body|removetags:"script, link, style"|safe }}</p>
     <br/>
     <ul><strong>Tags:</strong>
         {% for tag in object.tags.all %}

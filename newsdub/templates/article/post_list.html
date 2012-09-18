@@ -1,9 +1,9 @@
 {% extends 'base_dashboard.html' %}
 {% load switchcase %}
 {% load custom_filters %}
+<title>{% block title %}Your Articles{% endblock %}</title>
 
 {% block content %}
-    <title>{% block title %}Your Articles{% endblock %}</title>
         <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="700px">
             <th>Title</th>
             <th>Published On</th>

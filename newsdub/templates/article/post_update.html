@@ -1,16 +1,21 @@
 {% extends 'base_dashboard.html' %}
+{% load wysiwyg %}
 
 {% load i18n %}
+<title>{% block title %}Update an Article{% endblock %}</title>
 {% block js_top %}<script src="{{ STATIC_URL }}js/urlslugger.js"></script>{% endblock %}
+{% block additional_head %}{% wysiwyg_setup %}
+
+{% endblock %}
+
 {% block content %}
-    <title>{% block title %}Update an Article{% endblock %}</title>
     <div class="row">
         <div class="column grid_12">
             <li>Name: {{ user.get_full_name }}</li>
             <form id="profile_form" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                {{ form.newsletterz }}
+                {% wysiwyg_editor "id_body" %}
                 <button class="btn" type="submit">{% trans "Save" %}</button>
             </form>
         </div>

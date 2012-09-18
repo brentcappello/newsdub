@@ -1,15 +1,13 @@
 {% extends "base_dashboard.html" %}
 
 {% load i18n %}
-
+<title>{% block title %}Update a Newsletter{% endblock %}</title>
 {% block css %}
     {#    {{ block.super }}#}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/profile.css" type="text/css" />
 {% endblock %}
-<html>
-<body>
+
 {% block content %}
-    <title>{% block title %}Update a Newsletter{% endblock %}</title>
     <div class="row">
         <div class="column grid_12">
             <li>Name: {{ user.get_full_name }}</li>
@@ -21,5 +19,3 @@
         </div>
     </div>
 {% endblock %}
-</body>
-</html>

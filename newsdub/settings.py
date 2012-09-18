@@ -138,8 +138,10 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'taggit',
     'article',
+    'django_wysiwyg',
 
 )
+DJANGO_WYSIWYG_FLAVOR = 'ckeditor'
 
 ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_HOST = 'localhost'

@@ -16,7 +16,7 @@ def post_create(request, template_name='article/post_form.html'):
     the_creator = request.user
 
     if request.POST:
-        form = PostForm(the_creator, request.POST)
+        form = PostForm(the_creator, request.POST, request.FILES)
         if form.is_valid():
             article = form.save(commit=False)
             article.author = request.user

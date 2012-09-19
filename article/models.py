@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 
 from taggit.managers import TaggableManager
+import os
 
 
 class Newsletter(models.Model):
@@ -30,6 +31,9 @@ class Newsletter(models.Model):
         return self.slug
 
 
+def get_image_path(instance, filename):
+    return "user_{id}/{file}".format(id=instance.author.id, file=filename)
+
 class Post(models.Model):
     """Post Model."""
     STATUS_CHOICES = (
@@ -47,6 +51,7 @@ class Post(models.Model):
     publish = models.DateTimeField(default=datetime.now)
     created_at = models.DateTimeField(default=datetime.now)
     newsletters = models.ManyToManyField(Newsletter, help_text='good job')
+    image = models.ImageField(upload_to=get_image_path, blank=True)
     tags = TaggableManager()
     #    updated_at = models.DateTimeField(default=datetime.now)
 

@@ -139,6 +139,7 @@ INSTALLED_APPS = (
     'taggit',
     'article',
     'django_wysiwyg',
+    'easy_thumbnails',
 
 )
 DJANGO_WYSIWYG_FLAVOR = 'ckeditor'

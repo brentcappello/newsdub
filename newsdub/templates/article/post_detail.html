@@ -1,4 +1,5 @@
 {% extends 'base_dashboard.html' %}
+{% load thumbnail %}
 
 <title>{% block title %}Article: {{ object.title|truncatechars:35 }}{% endblock %}</title>
 
@@ -12,5 +13,7 @@
         {% endfor %}
     </ul>
     <br/>
+
+    <img src="{% thumbnail object.image 200x200 crop %}" alt=""/>
     <a href="{% url post_update object.slug%}">Edit this article</a>
 {% endblock %}

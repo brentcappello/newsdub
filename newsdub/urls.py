@@ -4,6 +4,7 @@ from django.contrib.auth.views import password_reset, password_reset_confirm
 import registration.backends.default.urls as regUrls
 from member.regbackend import UserRegistrationForm
 from registration.views import register
+from django.conf import settings
 
 from core.views import HomeView
 
@@ -28,3 +29,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 )
 
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^media/(?P<path>.*)$',
+         'django.views.static.serve', {'document_root':'./newsdub/media/'}),)

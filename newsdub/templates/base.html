@@ -42,7 +42,7 @@
     <div id="header_box">
         <div id="logo">
             <a href="{% url home %}">
-                <img src="/images/newsdub_logo.png" class="logo_img">
+                <img src="{{ STATIC_URL }}/images/logo.png" class="logo_img">
             </a>
         </div>
         {% if user.is_authenticated %}

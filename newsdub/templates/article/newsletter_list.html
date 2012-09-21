@@ -11,7 +11,7 @@
             <th></th>
             {% for newsletter in object_list %}
                 <tr class="{% cycle odd,even %}">
-                    <td><b><a href="{{ newsletter.get_absolute_url }}">{{ newsletter.title }}</a></b><br />
+                    <td><b><a href="grid/{{ newsletter.get_absolute_url }}">{{ newsletter.title }}</a></b><br />
 
                     </td>
                     <td nowrap>{{ newsletter.publish|date }}</td>

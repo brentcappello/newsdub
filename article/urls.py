@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     url(r'^articles/$', PostListView.as_view(), name='post_list'),
     url(r'^article/update/(?P<slug>.*)/$', PostUpdateView.as_view(), name="post_update",),
     url(r'^article/(?P<slug>.*)/$', DetailView.as_view(model=Post, context_object_name="post_detail",), name='post_detail'),
-    url(r'^article/delete/(?P<slug>.*)/$', PostDeleteView.as_view(), name="post_delete",),
+    url(r'^delete_article/(?P<slug>.*)/$', PostDeleteView.as_view(), name="post_delete"),
 
 #    url(r'^list/$', ListView.as_view(model=Post, context_object_name="post_list",)),
 #    url(r'^add/$', CreateView.as_view(model=Post, context_object_name="add-article",)),
@@ -25,6 +25,7 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('article.views',
     url(r'^$', NewsletterListView.as_view(), name='newsletter_list'),
-    url(r'^(?P<slug>.*)/$', 'newsletter_detail', name='newsletter_detail' ),
+    url(r'^list/(?P<slug>.*)/$', 'newsletter_detail', name='newsletter_detail' ),
+    url(r'^grid/(?P<slug>.*)/$', 'newsletter_grid', name='newsletter_grid' ),
 #    url(r'^newsletters/(?P<slug>.*)/$', NewsletterArticleListView.as_view(), name='newsletter_post_list'),
 )

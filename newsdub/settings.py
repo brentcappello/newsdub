@@ -100,6 +100,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
     )
+#THUMBNAIL_DEBUG = True
+
+#THUMBNAIL_PROCESSORS = (
+#    'easy_thumbnails.processors.colorspace',
+#    'easy_thumbnails.processors.autocrop',
+#    'easy_thumbnails.processors.scale_and_crop',
+#    'easy_thumbnails.processors.filters',
+#    )
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',

@@ -5,30 +5,6 @@
 <title>{% block title %}Create an Article{% endblock %}</title>
 {% block js_top %}<script src="{{ STATIC_URL }}js/urlslugger.js"></script>{% endblock %}
 {% block additional_head %}{% wysiwyg_setup %}
- <script>
-    {% block django_wysiwyg_editor_config %}
-        {{ block.super }}
-        var buttons = django_wysiwyg_editor_config.toolbar.buttons,
-        newButtons = [
-            {
-                group: 'alignment', label: 'Alignment',
-                buttons: [
-                    { type: 'push', label: '{% trans "Align Left CTRL + SHIFT + [" %}', value: 'justifyleft' },
-                    { type: 'push', label: '{% trans "Align Center CTRL + SHIFT + |" %}', value: 'justifycenter' },
-                    { type: 'push', label: '{% trans "Align Right CTRL + SHIFT + ]" %}', value: 'justifyright' },
-                    { type: 'push', label: '{% trans "Justify" %}', value: 'justifyfull' }
-                ]
-            }
-
-        ];
-        for (var i = 0; i < buttons.length; i++) {
-        if (buttons[i].group != "") {
-        newButtons.push(buttons[i]);
-        }
-        };
-        django_wysiwyg_editor_config.toolbar.buttons = newButtons;
-    {% endblock %}
- </script>
 {% endblock %}
 
 {% block content %}

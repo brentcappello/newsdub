@@ -5,7 +5,7 @@ from django.views.generic.edit import ModelFormMixin
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
 from django.http import Http404
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -89,8 +89,6 @@ class PostListView(LoginRequiredMixin, ListView):
         return context
 
 
-
-
 class NewsletterListView(LoginRequiredMixin, ListView):
     template_name = 'article/newsletter_list.html'
 
@@ -103,6 +101,7 @@ class NewsletterListView(LoginRequiredMixin, ListView):
         context['newsletter_list'] = self.authorpost
         return context
 
+
 #I probably could have easily done this in a CBGV
 def newsletter_detail(request, slug):
     newsletter = get_object_or_404(Newsletter, slug=slug)
@@ -111,6 +110,12 @@ def newsletter_detail(request, slug):
         'newsletter': newsletter,
         })
 
+def newsletter_grid(request, slug):
+    newsletter = get_object_or_404(Newsletter, slug=slug)
+    return render(request, 'article/newsletter_post_grid.html', {
+        'object_list': newsletter.post_set.all(),
+        'newsletter': newsletter,
+        })
 
 #class NewsletterPostListView(LoginRequiredMixin, ListView):
 #    template_name = 'article/newsletter_post_list.html'
@@ -128,7 +133,12 @@ def newsletter_detail(request, slug):
 #        return context
 
 
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    model = Post
+#    success_url = reverse_lazy('post_list')
 
+    def get_success_url(self):
+        return self.request.POST.get('path')
 
 
 
@@ -167,10 +177,3 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
         form = super(PostUpdateView,self).get_form(form_class) #instantiate using parent
         form.fields['newsletters'].queryset = Newsletter.objects.filter(created_by=self.request.user)
         return form
-
-
-class PostDeleteView(LoginRequiredMixin, DeleteView):
-    model = Post
-    success_url = reverse_lazy('post_list')
-
-

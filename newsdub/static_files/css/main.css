@@ -223,7 +223,7 @@ textarea {
 .preview_frame {
     border-bottom: 0 solid #616161;
     display: block;
-    padding: 10px 10px 5px;
+    padding: 0px 10px 5px;
 }
 .preview_title {
     color: #000000;
@@ -310,7 +310,50 @@ textarea {
     padding: 0px;
     margin: 8px 2px 8px 2px;
 }
-.button_card {
+.face.back.center a.button_link{
+    width: 65px;
+}
+/* ==========================================================================
+   Settings Page
+   ========================================================================== */
+.settings_personal {
+    border: 1px solid #D7D7D7;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 10px #CCCCCC;
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 450px;
+    font-size: 21px;
+    color: #333333;
+    font-family: "helvetica neue",arial,sans-serif;
+}
+.settings_personal li {
+    border-bottom: 1px solid rgba(34, 25, 25, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.7);
+    padding: 5px
+}
+.settings_personal li.first {
+    border-bottom: 1px solid rgba(34, 25, 25, 0.1);
+    border-top: none;
+}
+.settings_personal label {
+    font-weight: bold;
+    width: 110px;
+    display: inline-block;
+    font-size: 19px;
+    color: #666666;
+}
+.settings_personal a.button_card {
+    width: inherit;
+}
+.settings_personal form li{
+    padding: 7px
+}
+.settings_personal .btn {}
+/* ==========================================================================
+   Reusables
+   ========================================================================== */
+.button_link {
     -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
     -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
     box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -330,19 +373,20 @@ textarea {
     padding:3px 9px;
     text-decoration:none;
     text-shadow:1px 1px 0px #ffffff;
-    width: 65px;
     margin-bottom: 5px;
 
-}.button_card:hover {
+}.button_link:hover {
      background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
      background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
      filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
      background-color:#dfdfdf;
-    text-decoration: none;
- }.button_card:active {
-      position:relative;
-      top:1px;
-  }
+     text-decoration: none;
+ }
+.button_link:active {
+    position:relative;
+    top:1px;
+}
+
 
 
 /* ==========================================================================

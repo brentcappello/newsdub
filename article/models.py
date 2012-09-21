@@ -22,7 +22,7 @@ class Newsletter(models.Model):
     status = models.IntegerField(choices=STATUS_CHOICES, default=2)
 
     class Meta:
-        ordering = ['title']
+        ordering = ('-publish',)
 
     def __unicode__(self):
         return self.title

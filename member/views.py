@@ -19,7 +19,7 @@ def profileedit(request):
 
     if a.is_valid() and b.is_valid():
         a.save() and b.save()
-        return HttpResponseRedirect('/dashboard/')
+        return HttpResponseRedirect('/dashboard/account/')
 
 
     return render(request, 'dashboard/profile-edit.html', {
@@ -32,7 +32,7 @@ def passchange(request):
 
     if change_password_form.is_valid():
         change_password_form.save()
-        return HttpResponseRedirect('/dashboard/')
+        return HttpResponseRedirect('/dashboard/account/')
 
     return render(request, 'registration/password_change_form.html', {
         'form':change_password_form,

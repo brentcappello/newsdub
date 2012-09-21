@@ -70,42 +70,41 @@
             </div>
         {% else %}
         {% block navigation_top %}
-        <div id="nav">
-            <ul>
-                <li>
-                    <a href="/tour" class="">Take the tour</a>
-                </li>
-                <li>
-                    <a href="/plans" class="">Plans &amp; Pricing</a>
-                </li>
-                <li>
-                    <a href="/buzz" class="">Buzz</a>
-                </li>
-                <li>
-                    <a href="/team" class="">Team</a>
-                </li>
-                <li>
-                    <a href="/help" class="">Help</a>
-                </li>
-                <li>
-                    <a target="_blank" href="http://blog.newsdub.com">Blog</a>
-                </li>
-                <li>
-                    <a href="/lookup" class="">Sign In</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+            <div id="nav">
+                <ul>
+                    <li>
+                        <a href="/tour" class="">Take the tour</a>
+                    </li>
+                    <li>
+                        <a href="/plans" class="">Plans &amp; Pricing</a>
+                    </li>
+                    <li>
+                        <a href="/buzz" class="">Buzz</a>
+                    </li>
+                    <li>
+                        <a href="/team" class="">Team</a>
+                    </li>
+                    <li>
+                        <a href="/help" class="">Help</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="http://blog.newsdub.com">Blog</a>
+                    </li>
+                    <li>
+                        <a href="/lookup" class="">Sign In</a>
+                    </li>
+                </ul>
+            </div>
         {% endblock %}
         {% endif %}
+    </div>
 </div>
-<div class="clearfix"></div>
 {% block dashboard %}{% endblock %}
 <div class="clearfix"></div>
+
 <div id="main_container">
    {% block content %}{% endblock %}
 </div>
-
 
 {#<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>#}
 {#<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>#}

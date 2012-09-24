@@ -2,8 +2,10 @@
 {% load wysiwyg %}
 
 {% load i18n %}
-<title>{% block title %}Create an Article{% endblock %}</title>
-{% block js_top %}<script src="{{ STATIC_URL }}js/urlslugger.js"></script>{% endblock %}
+{% block title %}Create an Article{% endblock %}
+{% block js_top %}
+    <script src="{{ STATIC_URL }}js/urlslugger.js"></script>
+{% endblock %}
 {% block additional_head %}{% wysiwyg_setup %}
 {% endblock %}
 
@@ -11,12 +13,20 @@
 
     <div class="row">
         <div class="column grid_12">
-            <li>Name: {{ user.get_full_name }}</li>
             <form enctype="multipart/form-data" id="profile_form" method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
+                <ul>
+                    <li><label>Title:</label> {{ form.title }}</li>
+                    <li><label>Slug:</label> {{ form.slug }}</li>
+                    <li><label>Article:</label> {{ form.body }}</li>
+                    <li><label>Excerpt:</label> {{ form.tease }}</li>
+                    <li><label>Tags:</label> {{ form.tags }}</li>
+                    <li><label>Status:</label> {{ form.status }}</li>
+                    <li><label>Comments:</label> {{ form.allow_comments }}</li>
+                    <li><label>Newsletters:</label> {{ form.newsletters }}</li>
+                    <li><label>Image:</label> {{ form.image }}</li>
+                </ul>
                 {% wysiwyg_editor "id_body" %}
-
                 <button class="btn" type="submit">{% trans "Save" %}</button>
             </form>
         </div>

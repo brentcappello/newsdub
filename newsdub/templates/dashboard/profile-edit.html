@@ -1,6 +1,7 @@
 {% extends 'base_dashboard.html' %}
 {% load i18n %}
-<title>{% block title %}Edit Your Profile{% endblock %}</title>
+
+{% block title %}Edit Your Profile{% endblock %}
 
 {% block content %}
         <div class="settings_personal">
@@ -8,7 +9,7 @@
                 {% csrf_token %}
                 {{ forms.as_ul }}
                 {{ form.as_ul }}
-                <button class="button_link" type="submit">{% trans "Save Personal Information" %}</button>
+                <div class="center"> <button type="submit">{% trans "Save Personal Information" %}</button></div>
             </form>
         </div>
 {% endblock %}

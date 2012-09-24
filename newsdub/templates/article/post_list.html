@@ -1,23 +1,39 @@
 {% extends 'base_dashboard.html' %}
 {% load switchcase %}
 {% load custom_filters %}
-<title>{% block title %}Your Articles{% endblock %}</title>
+{% block title %}Your Articles{% endblock %}
+{% block js_top %}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.tinysort.min.js"></script>
+{% endblock %}
 
 {% block content %}
-        <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="700px">
-            <th>Title</th>
-            <th>Published On</th>
-            <th>Status</th>
+<script>
+    var aAsc = [];
+    function sortTable(nr) {
+        aAsc[nr] = aAsc[nr]=='asc'?'desc':'asc';
+        $('#xtable>tbody>tr').tsort('td:eq('+nr+')[abbr]',{order:aAsc[nr]});
+    }
+</script>
+
+
+        <table id="xtable" cellpadding="5" cellspacing="0" border="0" class="blog-list" width="700px">
+            <thead>
+            <th><a href="javascript:sortTable(0)">Title</a></th>
+            <th><a href="javascript:sortTable(1)">Published On</a></th>
+            <th><a href="javascript:sortTable(2)">Status</a></th>
             <th></th>
+            </thead>
             {% for post in object_list %}
-                <tr class="{% cycle odd,even %}">
-                    <td><b><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></b><br />
+{#              <tr class="{% cycle odd,even %}">#}
+                <tr>
+                    <td abbr="{{ post.title }}"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a><br />
                         {% with post.tease|truncatewords:"50" as body %}
                                 {{ body|force_escape|linebreaks|safe }}
                         {% endwith %}
                     </td>
-                    <td nowrap>{{ post.publish|date }}</td>
-                    <td>
+                    <td nowrap abbr="{{ post.publish|date:"U" }}">{{ post.publish|date }}</td>
+                    <td abbr="{{ post.status }}">
                         {% with post.status as status %}
                             {% switch status %}
                                 {% case 2 %}Published{% endcase %}

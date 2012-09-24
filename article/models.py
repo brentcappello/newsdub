@@ -52,7 +52,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(default=datetime.now)
     newsletters = models.ManyToManyField(Newsletter, help_text='good job')
     image = models.ImageField(upload_to=get_image_path, blank=True)
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
     #    updated_at = models.DateTimeField(default=datetime.now)
 
     class Meta:

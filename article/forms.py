@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from article.models import Post, Newsletter
 from django.forms.fields import MultipleChoiceField
-from django.forms.widgets import CheckboxSelectMultiple, TextInput
+from django.forms.widgets import CheckboxSelectMultiple, TextInput, FileInput
 from django.forms import ModelChoiceField
 
 class NewsletterForm(ModelForm):
@@ -33,5 +33,6 @@ class PostFormUpdate(ModelForm):
         exclude = ('author', 'publish', 'created_at',)
         widgets = {
             'newsletters': CheckboxSelectMultiple(),
-            'title': TextInput(attrs={'onkeyup':'updateslug()'})
+            'title': TextInput(attrs={'onkeyup':'updateslug()'}),
+            'image': FileInput()
         }

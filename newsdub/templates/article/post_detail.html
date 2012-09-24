@@ -1,7 +1,7 @@
 {% extends 'base_dashboard.html' %}
 {% load thumbnail %}
 
-<title>{% block title %}Article: {{ object.title|truncatechars:35 }}{% endblock %}</title>
+{% block title %}Article: {{ object.title|truncatechars:35 }}{% endblock %}
 
 {% block content %}
     <h1>{{ object.title }}</h1>

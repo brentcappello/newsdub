@@ -3,7 +3,7 @@
 {% load thumbnail %}
 {% load switchcase %}
 {% load custom_filters %}
-<title>{% block title %}Your Articles in {{ newsletter.title }}{% endblock %}</title>
+{% block title %}Your Articles in {{ newsletter.title }}{% endblock %}
 {% block content %}
         <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="900px">
             <th>Title</th>

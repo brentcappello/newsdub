@@ -3,7 +3,7 @@
 {% load thumbnail %}
 {% load switchcase %}
 {% load custom_filters %}
-<title>{% block title %}Your Articles in {{ newsletter.title }}{% endblock %}</title>
+{% block title %}Your Articles in {{ newsletter.title }}{% endblock %}
 {% block content %}
     <div class="">
         {% for post in object_list %}
@@ -15,7 +15,7 @@
 {#           </span>#}
 {#        </div>#}
             <div id="f1_container">
-                <div id="f1_card" class="newsletter_preview">
+                <div id="f1_card" class="preview_tile">
                     <div class="front face">
                         <img src="{% thumbnail post.image 150x150 crop %}" alt=""/>
                         <span class="preview_frame">

@@ -1,0 +1,13 @@
+Django==1.4.1
+Pillow==1.7.7
+South==0.7.6
+argparse==1.2.1
+django-debug-toolbar==0.9.4
+django-pagination==1.0.7
+django-registration==0.8
+django-sorting==0.1
+django-taggit==0.9.3
+django-wysiwyg==0.4.1
+easy-thumbnails==1.1
+psycopg2==2.4.5
+wsgiref==0.1.2

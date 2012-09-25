@@ -3,37 +3,75 @@
 {% load custom_filters %}
 {% block title %}Your Articles{% endblock %}
 {% block js_top %}
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="{{ STATIC_URL }}js/jquery.tinysort.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+{% endblock %}
+{% block additional_head %}
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
 {% endblock %}
 
+{% load pagination_tags %}
+{% load sorting_tags %}
 {% block content %}
-<script>
-    var aAsc = [];
-    function sortTable(nr) {
-        aAsc[nr] = aAsc[nr]=='asc'?'desc':'asc';
-        $('#xtable>tbody>tr').tsort('td:eq('+nr+')[abbr]',{order:aAsc[nr]});
-    }
-</script>
 
+    <script>
+        $(function() {
+            $( "#dialog-confirm" ).dialog({
+                autoOpen: false,
+                resizable: false,
+                height:190,
+                width:350,
+                modal: true,
+                show: 'fade',
+                buttons: {
+                    "Delete Article": function() {
+                        $( this ).dialog( $("#opener").submit() );
+                    },
+                    Cancel: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+            $( ".opener" ).click(function() {
+                $( "#dialog-confirm" ).dialog( "open" );
+                return false;
+            });
+        });
+    </script>
 
-        <table id="xtable" cellpadding="5" cellspacing="0" border="0" class="blog-list" width="700px">
+    {% autosort object_list %}
+    {% autopaginate object_list 10 %}
+        <table cellpadding="5" cellspacing="0" border="0" class="list_table" width="700px">
             <thead>
-            <th><a href="javascript:sortTable(0)">Title</a></th>
-            <th><a href="javascript:sortTable(1)">Published On</a></th>
-            <th><a href="javascript:sortTable(2)">Status</a></th>
-            <th></th>
+            <th class="title">{% anchor title "Title" %}</th>
+            <th>{% anchor publish "Published On" %}</th>
+            <th>{% anchor status "Status" %}</th>
+            <th>Newsletters</th>
+            <th>Tags</th>
             </thead>
             {% for post in object_list %}
-{#              <tr class="{% cycle odd,even %}">#}
-                <tr>
-                    <td abbr="{{ post.title }}"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a><br />
+                <tr class="{% cycle odd,even %}">
+                    <td class="title"><a class="title_link" href="{{ post.get_absolute_url }}">{{ post.title }}</a><br />
                         {% with post.tease|truncatewords:"50" as body %}
                                 {{ body|force_escape|linebreaks|safe }}
                         {% endwith %}
+                        <div class="row_actions">
+                            <div style="float: left">
+                                <a class="button_link" href="{% url post_update post.slug %}">Edit Article</a>
+                            </div>
+                            <div style="float: left; padding: 0 5px 0 5px; color:#dddddd;"> | </div>
+                            <div style="float: left;">
+                                <form id="opener" class="opener" action="{% url post_delete post.slug %}" method="POST">{% csrf_token %}
+                                    <input type=submit name="delete" value="Delete Article" class="button_link" />
+                                    <input type="hidden" name="path" value="{{ request.path }}"/>
+                                    <input type="hidden" name="action" value="delete"/>
+                                </form>
+                            </div>
+                        </div>
                     </td>
-                    <td nowrap abbr="{{ post.publish|date:"U" }}">{{ post.publish|date }}</td>
-                    <td abbr="{{ post.status }}">
+                    <td nowrap>{{ post.publish|date }}</td>
+                    <td>
                         {% with post.status as status %}
                             {% switch status %}
                                 {% case 2 %}Published{% endcase %}
@@ -41,21 +79,41 @@
                             {% endswitch %}
                         {% endwith %}
                     </td>
-                    <td width="50px" align="center">
-                        <a href="{% url post_update post.slug %}">
-                            <img src="{{ STATIC_URL }}images/pencil.png" alt="edit" border="0" title="Edit Post"  />
-                        </a>
+                    <td class="newsletters">
+                        {% for newsletter in post.newsletters.all %}
+                            <a href="{% url newsletter_list %}list/{{ newsletter.get_absolute_url }}">{{ newsletter }}</a>
+                        {% endfor %}
                     </td>
-                    <td align="right">
-
-                        <form action="{% url post_delete post.slug %}" method="POST">{% csrf_token %}
-                            <input type="image" src="{{ STATIC_URL }}images/delete.png" alt="delete" border="0" title="Delete Post" />
-                            <input type="hidden" name="path" value="{{ request.path }}"/>
-                            <input type="hidden" name="action" value="delete"/>
-                        </form>
+                    <td class="tags">
+                        {% for tag in post.tags.all %}
+                            {{ tag.name }},
+                        {% endfor %}
                     </td>
+{#                    <td width="50px" align="center">#}
+{#                        <a href="{% url post_update post.slug %}">#}
+{#                            <img src="{{ STATIC_URL }}images/pencil.png" alt="edit" border="0" title="Edit Post"  />#}
+{#                        </a>#}
+{#                    </td>#}
+{#                    <td align="right">#}
+{##}
+{#                        <form action="{% url post_delete post.slug %}" method="POST">{% csrf_token %}#}
+{#                            <input type="image" src="{{ STATIC_URL }}images/delete.png" alt="delete" border="0" title="Delete Post" />#}
+{#                            <input type="hidden" name="path" value="{{ request.path }}"/>#}
+{#                            <input type="hidden" name="action" value="delete"/>#}
+{#                        </form>#}
+{#                    </td>#}
                 </tr>
             {% endfor %}
         </table>
+    {% paginate %}
+
+
+
+
+
+        <div id="dialog-confirm" title="Are You Sure You Want to Delete?">
+            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This article will be permanently deleted and cannot be recovered.</p>
+        </div>
+
 
 {% endblock %}

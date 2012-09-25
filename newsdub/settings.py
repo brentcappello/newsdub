@@ -116,6 +116,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django_sorting.middleware.SortingMiddleware',
+    'pagination.middleware.PaginationMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -137,7 +139,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'registration',
     'dashboard',
@@ -148,6 +149,8 @@ INSTALLED_APPS = (
     'article',
     'django_wysiwyg',
     'easy_thumbnails',
+    'django_sorting',
+    'pagination',
 
 )
 DJANGO_WYSIWYG_FLAVOR = 'ckeditor'

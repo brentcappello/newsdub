@@ -10,26 +10,20 @@
 {% endblock %}
 
 {% block content %}
-
-    <div class="row">
-        <div class="column grid_12">
-            <form enctype="multipart/form-data" id="profile_form" method="post">
+            <form enctype="multipart/form-data" id="article_form" method="post">
                 {% csrf_token %}
                 <ul>
-                    <li><label>Title:</label> {{ form.title }}</li>
-                    <li><label>Slug:</label> {{ form.slug }}</li>
-                    <li><label>Article:</label> {{ form.body }}</li>
-                    <li><label>Excerpt:</label> {{ form.tease }}</li>
+                    <li><label class="article_lb">Article Title:</label> {{ form.title }}</li>
+                    <li><label class="article_lb">Article Slug:</label> {{ form.slug }}</li>
+                    <li>{{ form.body }}</li>
+                    <li><label>Article Excerpt:</label> {{ form.tease }}</li>
                     <li><label>Tags:</label> {{ form.tags }}</li>
                     <li><label>Status:</label> {{ form.status }}</li>
-                    <li><label>Comments:</label> {{ form.allow_comments }}</li>
+                    <li><label>Allow Comments:</label> {{ form.allow_comments }}</li>
                     <li><label>Newsletters:</label> {{ form.newsletters }}</li>
                     <li><label>Image:</label> {{ form.image }}</li>
                 </ul>
                 {% wysiwyg_editor "id_body" %}
                 <button class="btn" type="submit">{% trans "Save" %}</button>
             </form>
-        </div>
-    </div>
-
 {% endblock %}

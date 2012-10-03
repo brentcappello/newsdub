@@ -27,7 +27,7 @@
                         <p>{{ post.tease|truncatechars:100  }}</p>
                         <hr>
                         <div><a href="{{ post.get_absolute_url }}" class="button_link">View</a></div>
-                        <div><a href="{% url post_update post.slug%}" class="button_link">Edit</a></div>
+                        <div><a href="{% url post_update post.slug %}" class="button_link">Edit</a></div>
                         <div><a href="" class="button_link">Share</a></div>
                     </div>
                 </div>

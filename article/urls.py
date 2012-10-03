@@ -11,11 +11,10 @@ urlpatterns = patterns('',
     url(r'^delete_newsletter/(?P<slug>.*)/$', NewsletterDeleteView.as_view(), name="newsletter_delete",),
 #    url(r'^newsletter/(?P<slug>.*)/$', NewsletterPostListView.as_view(), name='newsletter_post_list'),
 
-
     url(r'^article/add/$', 'article.views.post_create', name='post'),
     url(r'^articles/$', PostListView.as_view(), name='post_list'),
     url(r'^article/update/(?P<slug>.*)/$', PostUpdateView.as_view(), name="post_update",),
-    url(r'^article/(?P<slug>.*)/$', DetailView.as_view(model=Post, context_object_name="post_detail",), name='post_detail'),
+    url(r'^(?P<author>.*)/article/(?P<slug>.*)/$', DetailView.as_view(model=Post, context_object_name="post_detail",), name='post_detail'),
     url(r'^delete_article/(?P<slug>.*)/$', PostDeleteView.as_view(), name="post_delete"),
 
 #    url(r'^list/$', ListView.as_view(model=Post, context_object_name="post_list",)),

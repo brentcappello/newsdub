@@ -102,7 +102,7 @@ class NewsletterListView(LoginRequiredMixin, ListView):
         return context
 
 
-#I probably could have easily done this in a CBGV
+#I probably could have done this differently with CBGV
 def newsletter_detail(request, slug):
     newsletter = get_object_or_404(Newsletter, slug=slug)
     return render(request, 'article/newsletter_post_list.html', {

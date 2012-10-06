@@ -194,14 +194,14 @@ textarea {
 }
 /* ==========================================================================
 /*Add Content */
-#article_form li {
+#article_form li, #newsletter_form li {
     margin: 10px;
 }
-#article_form li label {
+#article_form li label, #newsletter_form li label {
     color: #444444;
 
 }
-#article_form li label.article_lb {
+#article_form li label.article_lb, #newsletter_form li label.newsletter_lb {
   width: 95px;
   display: inline-block;
 }

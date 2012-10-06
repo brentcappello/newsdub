@@ -158,6 +158,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 class NewsletterUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'article/newsletter_update.html'
     model = Newsletter
+    success_url = reverse_lazy('newsletter_list')
     form_class = NewsletterForm
 
 class NewsletterDeleteView(LoginRequiredMixin, DeleteView):

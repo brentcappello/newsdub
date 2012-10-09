@@ -22,11 +22,14 @@ urlpatterns = patterns('',
 #    url(r'^list/$', ListView.as_view(model=Post, context_object_name="post_list",)),
 #    url(r'^add/$', CreateView.as_view(model=Post, context_object_name="add-article",)),
 
+    #public facing newsletter view
+#    url(r'^view/?P<slug>.*)/$', ),
 )
 
 urlpatterns += patterns('article.views',
     url(r'^$', NewsletterListView.as_view(), name='newsletter_list'),
-    url(r'^list/(?P<slug>.*)/$', 'newsletter_detail', name='newsletter_detail' ),
+    url(r'^tabular/(?P<slug>.*)/$', 'newsletter_tabular', name='newsletter_tabular' ),
     url(r'^grid/(?P<slug>.*)/$', 'newsletter_grid', name='newsletter_grid' ),
+    url(r'^pub/(?P<author>.*)/(?P<slug>.*)/$', 'newsletter_pub', name='newsletter_pub' ), #public facing view
 #    url(r'^newsletters/(?P<slug>.*)/$', NewsletterArticleListView.as_view(), name='newsletter_post_list'),
 )

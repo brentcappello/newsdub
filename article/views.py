@@ -103,9 +103,9 @@ class NewsletterListView(LoginRequiredMixin, ListView):
 
 
 #I probably could have done this differently with CBGV
-def newsletter_detail(request, slug):
+def newsletter_tabular(request, slug):
     newsletter = get_object_or_404(Newsletter, slug=slug)
-    return render(request, 'article/newsletter_post_list.html', {
+    return render(request, 'article/newsletter_post_tabular.html', {
         'object_list': newsletter.post_set.all(),
         'newsletter': newsletter,
         })
@@ -117,8 +117,16 @@ def newsletter_grid(request, slug):
         'newsletter': newsletter,
         })
 
+def newsletter_pub(request, slug, author):
+    theauthor = User.objects.get(username=author).id
+    newsletter = get_object_or_404(Newsletter, slug=slug, created_by=theauthor)
+    return render(request, 'article/newsletter_post_pub.html', {
+        'object_list': newsletter.post_set.all(),
+        'newsletter': newsletter,
+        })
+
 #class NewsletterPostListView(LoginRequiredMixin, ListView):
-#    template_name = 'article/newsletter_post_list.html'
+#    template_name = 'article/newsletter_post_tabular.html'
 #
 ##    def newsletter_view(self):
 ##        self.newsletter = get_object_or_404(Newsletter, slug=slug)
@@ -144,7 +152,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 
 
 #class NewsletterPostListView(LoginRequiredMixin, ListView):
-#    template_name = 'article/newsletter_post_list.html'
+#    template_name = 'article/newsletter_post_tabular.html'
 #
 #    def get_queryset(self):
 #        self.newsletter_articles = Post.objects.filter(newsletters=self.newsletter_articles)

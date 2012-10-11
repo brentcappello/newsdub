@@ -22,8 +22,6 @@ urlpatterns = patterns('',
 #    url(r'^list/$', ListView.as_view(model=Post, context_object_name="post_list",)),
 #    url(r'^add/$', CreateView.as_view(model=Post, context_object_name="add-article",)),
 
-    #public facing newsletter view
-#    url(r'^view/?P<slug>.*)/$', ),
 )
 
 urlpatterns += patterns('article.views',

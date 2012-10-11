@@ -103,6 +103,7 @@ class NewsletterListView(LoginRequiredMixin, ListView):
 
 
 #I probably could have done this differently with CBGV
+@login_required
 def newsletter_tabular(request, slug):
     newsletter = get_object_or_404(Newsletter, slug=slug)
     return render(request, 'article/newsletter_post_tabular.html', {
@@ -110,6 +111,7 @@ def newsletter_tabular(request, slug):
         'newsletter': newsletter,
         })
 
+@login_required
 def newsletter_grid(request, slug):
     newsletter = get_object_or_404(Newsletter, slug=slug)
     return render(request, 'article/newsletter_post_grid.html', {
@@ -140,7 +142,6 @@ def newsletter_pub(request, slug, author):
 #        context = super(NewsletterPostListView, self).get_context_data(*args, **kwargs)
 #        return context
 
-
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
 #    success_url = reverse_lazy('post_list')
@@ -163,19 +164,23 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 #        context['newsletter_post_list'] = self.newsletter_articles
 #        return context
 
+
 class NewsletterUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'article/newsletter_update.html'
     model = Newsletter
     success_url = reverse_lazy('newsletter_list')
     form_class = NewsletterForm
 
+
 class NewsletterDeleteView(LoginRequiredMixin, DeleteView):
     model = Newsletter
     success_url = reverse_lazy('newsletter_list')
 
+
 class PostDetailView(LoginRequiredMixin, ListView):
     template_name = 'article/post_detail.html'
     model = Post
+
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'article/post_update.html'

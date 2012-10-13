@@ -167,7 +167,7 @@ textarea {
     background-color: #FFFFFF;
     border-left: 1px solid #DDDDDD;
     border-right: 1px solid #DDDDDD;
-    padding: 20px 0 25px;
+    /*padding: 20px 0 25px;*/
     margin-left: auto;
     margin-right: auto;
     width: 960px;
@@ -461,6 +461,39 @@ textarea {
 }
 .list_table tr:hover .row_actions{
     visibility: visible;
+}
+
+
+/* ==========================================================================
+   Public Newsletter styles
+   ========================================================================== */
+#container_header_pub {
+    background-color: #2A2D2A;
+    height: 40px;
+    width: 100%;
+    box-shadow: 0 0 10px 0 #666666;
+}
+
+#logo_pub {
+    float: left;
+    padding: 8px 40px 5px 0;
+    width: 255px;
+    height: 90px;
+}
+
+#main_container_pub {
+    background-color: #FFFFFF;
+    border-left: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    padding: 20px 0 25px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+}
+.content_title_pub{
+    color: #FFFFFF;
+    font-size: 28px;
+    font-weight: bold
 }
 /* ==========================================================================
    Reusables

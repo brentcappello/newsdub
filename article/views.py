@@ -105,7 +105,7 @@ class NewsletterListView(LoginRequiredMixin, ListView):
 #I probably could have done this differently with CBGV
 @login_required
 def newsletter_tabular(request, slug):
-    newsletter = get_object_or_404(Newsletter, slug=slug)
+    newsletter = get_object_or_404(Newsletter, slug=slug, created_by=request.user)
     return render(request, 'article/newsletter_post_tabular.html', {
         'object_list': newsletter.post_set.all(),
         'newsletter': newsletter,
@@ -113,7 +113,7 @@ def newsletter_tabular(request, slug):
 
 @login_required
 def newsletter_grid(request, slug):
-    newsletter = get_object_or_404(Newsletter, slug=slug)
+    newsletter = get_object_or_404(Newsletter, slug=slug, created_by=request.user)
     return render(request, 'article/newsletter_post_grid.html', {
         'object_list': newsletter.post_set.all(),
         'newsletter': newsletter,

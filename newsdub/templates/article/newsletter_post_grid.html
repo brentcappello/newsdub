@@ -17,7 +17,7 @@
             <div id="f1_container">
                 <div id="f1_card" class="preview_tile">
                     <div class="front face">
-                        <img src="{% thumbnail post.image 150x150 crop %}" alt=""/>
+                        <a href="#"><img src="{% thumbnail post.image 150x150 crop %}" alt=""/></a>
                         <span class="preview_frame">
                           <span class="preview_title">{{ post.title|truncatechars:20 }}</span>
                           <span class="preview_excerp">{{ post.tease|truncatechars:25  }}</span>

@@ -10,6 +10,7 @@
    Base styles: opinionated defaults
    ========================================================================== */
 @import url('http://fonts.googleapis.com/css?family=Headland+One');
+@import url('http://fonts.googleapis.com/css?family=Cantora+One');
 html,
 button,
 input,
@@ -482,19 +483,218 @@ textarea {
 }
 
 #main_container_pub {
-    background-color: #FFFFFF;
-    border-left: 1px solid #DDDDDD;
-    border-right: 1px solid #DDDDDD;
-    padding: 20px 0 25px;
+    /*background-color: #FFFFFF;*/
+    /*border-left: 1px solid #DDDDDD;*/
+    /*border-right: 1px solid #DDDDDD;*/
     margin-left: auto;
     margin-right: auto;
-    width: 800px;
+    max-width: 900px;
 }
 .content_title_pub{
     color: #FFFFFF;
     font-size: 28px;
-    font-weight: bold
+    font-weight: bold;
+    font-family: 'helvetica neue', sans-serif;
 }
+
+/*.preview_tile_pub {*/
+    /*position:relative;*/
+    /*background-color: #FFFFFF;*/
+    /*border: 0 dotted #000000;*/
+    /*box-shadow: 0 0 0px 3px rgba(0, 0, 0, 0.1);*/
+    /*float: left;*/
+    /*padding: 2px;*/
+    /*margin: 5px;*/
+/*}*/
+.preview_tile_pub {
+    background-color: #FFFFFF;
+    border: 0 dotted #000000;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    float: left;
+    margin: 30px 15px 0;
+    padding: 3px;
+    position: relative;
+}
+.preview_tile_pub a img {
+    opacity:1;
+    -moz-opacity: 1;
+    filter:alpha(opacity=100);
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    -ms-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.preview_tile_pub:hover a img {
+    opacity:0.3;
+    -moz-opacity: 0.3;
+    filter:alpha(opacity=30);
+}
+.preview_title_pub {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    max-width: 230px;
+    padding: 1px 4px 1px 7px;
+    line-height: 25px;
+    text-transform: none;
+    background-color: rgba(255, 255, 255, 0.7);
+    /*opacity: 0.7;*/
+}
+.preview_title_pub h2 {
+    color: #2A2D2A;
+    font-family: 'Cantora One', sans-serif;
+    font-size: 27px;
+}
+.preview_excerp_pub {
+    position: absolute;
+    bottom: 15px;
+    right: 0px;
+    padding: 5px;
+    max-width: 226px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.preview_excerp_pub p {
+    color:#000000;
+    font-family: 'PT Sans',sans-serif;
+    font-size: 12px;
+    line-height: 15px;
+}
+.preview_read_pub {
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 17px;
+    color: #2A2D2A;
+    float: right;
+    padding: 2px;
+    border: 1px solid #bababa;
+    background-color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+
+
+/*Flipper Public View */
+
+/*#f1_container_pub {*/
+    /*position: relative;*/
+    /*width: 260px;*/
+    /*height: 260px;*/
+    /*z-index: 1;*/
+    /*float: left;*/
+    /*display: block;*/
+    /*margin: 15px*/
+/*}*/
+/*#f1_container_pub {*/
+    /*-webkit-perspective: 1000px;*/
+    /*-moz-perspective: 1000px;*/
+    /*-o-perspective: 1000px;*/
+    /*perspective: 1000px;*/
+/*}*/
+/*#f1_card_pub {*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*-webkit-transform-style: preserve-3d;*/
+    /*-webkit-transition: all 0.3s linear;*/
+    /*-moz-transform-style: preserve-3d;*/
+    /*-moz-transition: all 0.3s linear;*/
+    /*-o-transform-style: preserve-3d;*/
+    /*-o-transition: all 0.3s linear;*/
+    /*transform-style: preserve-3d;*/
+    /*transition: all 0.3s linear;*/
+/*}*/
+/*#f1_container_pub:hover #f1_card_pub  {*/
+    /*-webkit-transform: rotateY(180deg);*/
+    /*-moz-transform: rotateY(180deg);*/
+    /*-o-transform: rotateY(180deg);*/
+    /*transform: rotateY(180deg);*/
+    /*-webkit-box-shadow: -5px 5px 5px #aaa;*/
+    /*-moz-box-shadow: -5px 5px 5px #aaa;*/
+    /*box-shadow: 0 0 2px 3px rgba(0, 0, 0, 0.02);*/
+/*}*/
+/*.face_pub {*/
+    /*position: absolute;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*-webkit-backface-visibility: hidden;*/
+    /*-moz-backface-visibility: hidden;*/
+    /*-o-backface-visibility: hidden;*/
+    /*backface-visibility: hidden;*/
+/*}*/
+/*.face_pub.back_pub {*/
+    /*display: block;*/
+    /*-webkit-transform: rotateY(180deg);*/
+    /*-webkit-box-sizing: border-box;*/
+    /*-moz-transform: rotateY(180deg);*/
+    /*-moz-box-sizing: border-box;*/
+    /*-o-transform: rotateY(180deg);*/
+    /*-o-box-sizing: border-box;*/
+    /*transform: rotateY(180deg);*/
+    /*box-sizing: border-box;*/
+    /*padding: 10px 10px 10px 20px;*/
+    /*color: #000000;*/
+    /*text-align: center;*/
+/*}*/
+/*.face_pub.back_pub p, .face_pub.back_pub a {*/
+    /*font-size: 11px;*/
+/*}*/
+/*.face_pub.back_pub.center_pub hr {*/
+    /*padding: 0px;*/
+    /*margin: 8px 2px 8px 2px;*/
+/*}*/
+/*.face_pub.back_pub.center a.button_link{*/
+    /*width: 65px;*/
+/*}*/
+
+/*Grid Public Layout */
+
+/*.preview_tile_pub {*/
+    /*background-color: #FFFFFF;*/
+    /*border: 0 dotted #000000;*/
+    /*border-radius: 4px 4px 4px 4px;*/
+    /*box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);*/
+    /*float: left;*/
+    /*padding: 2px;*/
+    /*width: 280px;*/
+/*}*/
+/*.preview_tile_pub a img {*/
+    /*position: relative;*/
+    /*opacity:1;*/
+    /*-moz-opacity: 1;*/
+    /*filter:alpha(opacity=100);*/
+    /*-webkit-transition: opacity 0.5s ease-in-out;*/
+    /*-moz-transition: opacity 0.5s ease-in-out;*/
+    /*-o-transition: opacity 0.5s ease-in-out;*/
+    /*-ms-transition: opacity 0.5s ease-in-out;*/
+    /*transition: opacity 0.5s ease-in-out;*/
+/*}*/
+/*.preview_tile_pub:hover a img {*/
+    /*opacity:0.3;*/
+    /*-moz-opacity: 0.3;*/
+    /*filter:alpha(opacity=30);*/
+/*}*/
+/*.preview_frame_pub {*/
+    /*border-bottom: 0 solid #616161;*/
+    /*display: block;*/
+    /*padding: 0px 10px 5px;*/
+/*}*/
+/*.preview_title_pub {*/
+    /*color: #000000;*/
+    /*display: block;*/
+    /*font-family: 'PT Sans',sans-serif;*/
+    /*font-size: 12px;*/
+    /*font-style: italic;*/
+    /*line-height: 17px;*/
+    /*text-transform: none;*/
+/*}*/
+/*.preview_excerp_pub {*/
+    /*display: block;*/
+    /*font-family: 'PT Sans',sans-serif;*/
+    /*font-size: 10px;*/
+    /*line-height: 17px;*/
+/*}*/
+
+
 /* ==========================================================================
    Reusables
    ========================================================================== */

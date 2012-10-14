@@ -8,76 +8,43 @@
 {% block content %}
     <div class="">
         {% for post in object_list %}
-{#        <div class="newsletter_preview">#}
-{#            <a href="{{ post.get_absolute_url }}"> <img src="{% thumbnail post.image 280x200 crop %}" alt=""/></a>#}
-{#           <span class="preview_frame">#}
-{#              <span class="preview_title">{{ post.title }}</span>#}
-{#               <span class="preview_excerp">{{ post.tease|truncatechars:35  }}</span>#}
-{#           </span>#}
-{#        </div>#}
-            <div id="f1_container">
-                <div id="f1_card" class="preview_tile">
-                    <div class="front face">
-                        <img src="{% thumbnail post.image 260x260 crop %}" alt=""/>
-                        <span class="preview_frame">
-                          <span class="preview_title">{{ post.title|truncatechars:20 }}</span>
-                          <span class="preview_excerp">{{ post.tease|truncatechars:25  }}</span>
-                        </span>
-                    </div>
-                    <div class="back face center">
-                        <p>{{ post.tease|truncatechars:100  }}</p>
-                        <hr>
-                        <div><a href="{{ post.get_absolute_url }}" class="button_link">View</a></div>
-                        <div><a href="{% url post_update post.slug %}" class="button_link">Edit</a></div>
-                        <div><a href="" class="button_link">Share</a></div>
-                    </div>
+            <div id="container_pub">
+                <div class="preview_tile_pub">
+                    <a href=""><img src="{% thumbnail post.image 260x260 crop %}" alt=""/></a>
+                    <span class="preview_title_pub"><h2>{{ post.title|truncatechars:38 }}</h2></span>
+                    <span class="preview_excerp_pub">
+                        <p>{{ post.tease|truncatechars:150 }}</p>
+                        <span class="preview_read_pub">READ</span>
+                    </span>
                 </div>
             </div>
         {% endfor %}
     </div>
 
-<div class="clearfix"></div><br/>
-
-
-
-
-
-{#        <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="700px">#}
-{#            <th>Title</th>#}
-{#            <th>Published On</th>#}
-{#            <th>Status</th>#}
-{#            <th></th>#}
-{#            {% for post in object_list %}#}
-{#                <tr class="{% cycle odd,even %}">#}
-{#                    <td><b><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></b><br />#}
-{#                        <img src="{% thumbnail post.image 100x200 crop %}" alt=""/>#}
-{#                        {% with post.tease|truncatewords:"50" as body %}#}
-{#                                {{ body|force_escape|linebreaks|safe }}#}
-{#                        {% endwith %}#}
-{#                    </td>#}
-{#                    <td nowrap>{{ post.publish|date }}</td>#}
-{#                    <td>#}
-{#                        {% with post.status as status %}#}
-{#                            {% switch status %}#}
-{#                                {% case 2 %}Published{% endcase %}#}
-{#                                {% case 1 %}Draft{% endcase %}#}
-{#                            {% endswitch %}#}
-{#                        {% endwith %}#}
-{#                    </td>#}
-{#                    <td width="50px" align="center">#}
-{#                        <a href="{% url post_update post.slug %}">#}
-{#                            <img src="{{ STATIC_URL }}images/pencil.png" alt="edit" border="0" title="Edit Post"  />#}
-{#                        </a>#}
-{#                    </td>#}
-{#                    <td align="right">#}
+{#This was for card flipping#}
+{#    <div class="">#}
+{#        {% for post in object_list %}#}
+{#            <div id="f1_container_pub">#}
+{#                <div id="f1_card_pub" class="preview_tile_pub">#}
+{#                    <div class="front_pub face_pub">#}
+{#                        <img src="{% thumbnail post.image 260x260 crop %}" alt=""/>#}
+{#                        <span class="preview_title_pub">{{ post.title|truncatechars:20 }}</span>#}
+{#                        <span class="preview_frame_pub">#}
 {##}
-{#                        <form action="{% url post_delete post.slug %}" method="POST">{% csrf_token %}#}
-{#                            <input type="image" src="{{ STATIC_URL }}images/delete.png" alt="delete" border="0" title="Delete Post" />#}
-{#                            <input type="hidden" name="action" value="delete"/>#}
-{#                        </form>#}
-{#                    </td>#}
-{#                </tr>#}
-{#            {% endfor %}#}
-{#        </table>#}
-    <p>Switch View: <a href="/newsletters/tabular/{{ newsletter.get_absolute_url }}">List</a></p>
+{#                          <span class="preview_excerp_pub">{{ post.tease|truncatechars:25  }}</span>#}
+{#                          <span id="f1_flip_icon">flip</span>#}
+{#                        </span>#}
+{#                    </div>#}
+{#                    <div class="back_pub face_pub center_pub">#}
+{#                        <p>{{ post.tease|truncatechars:100  }}</p>#}
+{#                        <hr>#}
+{#                        <div><a href="{{ post.get_absolute_url }}" class="button_link">View</a></div>#}
+{#                        <div><a href="{% url post_update post.slug %}" class="button_link">Edit</a></div>#}
+{#                        <div><a href="" class="button_link">Share</a></div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+<div class="clearfix"></div>
 {% endblock %}

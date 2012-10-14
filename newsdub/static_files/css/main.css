@@ -478,7 +478,7 @@ textarea {
 #logo_pub {
     float: left;
     padding: 8px 40px 5px 0;
-    width: 255px;
+    /*width: 255px;*/
     height: 90px;
 }
 
@@ -511,7 +511,7 @@ textarea {
     border: 0 dotted #000000;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     float: left;
-    margin: 30px 15px 0;
+    margin: 20px 9px 0;
     padding: 3px;
     position: relative;
 }

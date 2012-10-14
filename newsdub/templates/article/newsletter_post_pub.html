@@ -1,25 +1,19 @@
 {% extends 'base_public.html' %}
 
 {% load thumbnail %}
-{% load switchcase %}
-{% load custom_filters %}
 {% block title %}{{ newsletter.title }}{% endblock %}
 {% block content_title %}{{ newsletter.title|truncatechars:50 }}{% endblock %}
 {% block content %}
-    <div class="">
         {% for post in object_list %}
-            <div id="container_pub">
                 <div class="preview_tile_pub">
                     <a href=""><img src="{% thumbnail post.image 260x260 crop %}" alt=""/></a>
-                    <span class="preview_title_pub"><h2>{{ post.title|truncatechars:38 }}</h2></span>
-                    <span class="preview_excerp_pub">
+                    <div class="preview_title_pub"><h2>{{ post.title|truncatechars:38 }}</h2></div>
+                    <div class="preview_excerp_pub">
                         <p>{{ post.tease|truncatechars:150 }}</p>
                         <span class="preview_read_pub">READ</span>
-                    </span>
+                    </div>
                 </div>
-            </div>
         {% endfor %}
-    </div>
 
 {#This was for card flipping#}
 {#    <div class="">#}
@@ -46,5 +40,7 @@
 {#            </div>#}
 {#        {% endfor %}#}
 {#    </div>#}
-<div class="clearfix"></div>
+
+
+{#<div class="clearfix"></div>#}
 {% endblock %}

@@ -572,7 +572,17 @@ textarea {
     background-color: rgba(255, 255, 255, 0.7);
     cursor: pointer;
 }
-
+/*format A */
+.format_a {
+    max-width: 700px;
+    margin-top: 20px;
+}
+.format_a .main_image {
+    float: right;
+    border: 1px solid #000000;
+    box-shadow: 0 0 2px 0;
+    margin: 0 0 20px 20px;
+}
 
 /*Flipper Public View */
 

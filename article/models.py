@@ -73,7 +73,12 @@ class Post(models.Model):
             'slug': self.slug
         })
 
-
+    @models.permalink
+    def get_absolute_url_public(self):
+        return ('post_detail_pub', None, {
+            'author': self.author.username,
+            'slug': self.slug
+        })
 
 
 

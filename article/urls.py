@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^article/update/(?P<slug>.*)/$', PostUpdateView.as_view(), name="post_update",),
     #I had a bug here when I added the author to the URL and added the class meta author to the model. For some
     # reason I was unable to view some newsletters without throwing an error, (?P<author>.*)/
+    url(r'^article/pub/(?P<author>.*)/(?P<slug>.*)/$', 'article.views.article_pub', name='post_detail_pub'),
     url(r'^article/(?P<slug>.*)/$', DetailView.as_view(model=Post, context_object_name="post_detail",), name='post_detail'),
     url(r'^delete_article/(?P<slug>.*)/$', PostDeleteView.as_view(), name="post_delete"),
 
@@ -29,5 +30,6 @@ urlpatterns += patterns('article.views',
     url(r'^tabular/(?P<slug>.*)/$', 'newsletter_tabular', name='newsletter_tabular' ),
     url(r'^grid/(?P<slug>.*)/$', 'newsletter_grid', name='newsletter_grid' ),
     url(r'^pub/(?P<author>.*)/(?P<slug>.*)/$', 'newsletter_pub', name='newsletter_pub' ), #public facing view
+#    url(r'^article/pub/(?P<author>.*)/(?P<slug>.*)/$', 'article_pub', name='post_detail_pub'),
 #    url(r'^newsletters/(?P<slug>.*)/$', NewsletterArticleListView.as_view(), name='newsletter_post_list'),
 )

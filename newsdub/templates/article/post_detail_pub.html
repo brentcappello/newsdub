@@ -1,0 +1,20 @@
+{% extends 'base_public.html' %}
+{% load thumbnail %}
+
+{% block title %}{{ object.title|truncatechars:35 }}{% endblock %}
+{% block content_title %}{{ object.title|truncatechars:50 }}{% endblock %}
+
+{% block content %}
+    <h1>{{ object.title }}</h1>
+    <p>{{ object.body|removetags:"script, link, style"|safe }}</p>
+    <br/>
+    <ul><strong>Tags:</strong>
+        {% for tag in object.tags.all %}
+            <li> {{ tag.name }} </li>
+        {% endfor %}
+    </ul>
+    <br/>
+
+    <a href="{{ object.image.url }}"><img src="{% thumbnail object.image 200x200 crop %}" alt=""/></a><br/>
+
+{% endblock %}

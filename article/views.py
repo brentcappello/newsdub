@@ -2,7 +2,7 @@ from dashboard.views import LoginRequiredMixin
 from article.models import Post, Newsletter
 from article.forms import PostForm, NewsletterForm, PostFormUpdate
 from django.views.generic.edit import ModelFormMixin
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
 from django.http import Http404
 from django.core.urlresolvers import reverse_lazy, reverse
@@ -127,6 +127,18 @@ def newsletter_pub(request, slug, author):
         'newsletter': newsletter,
         })
 
+
+#class PostDetailViewPub(DetailView):
+#    template_name = 'article/post_detail_pub.html'
+#    model = Post
+
+def article_pub(request, slug, author):
+    theauthor = User.objects.get(username=author).id
+    post = get_object_or_404(Post, slug=slug, author=theauthor)
+    return render(request, 'article/post_detail_pub.html', {
+        'object': post,
+        })
+
 #class NewsletterPostListView(LoginRequiredMixin, ListView):
 #    template_name = 'article/newsletter_post_tabular.html'
 #
@@ -177,9 +189,10 @@ class NewsletterDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('newsletter_list')
 
 
-class PostDetailView(LoginRequiredMixin, ListView):
-    template_name = 'article/post_detail.html'
-    model = Post
+#class PostDetailView(LoginRequiredMixin, ListView):
+#    template_name = 'article/post_detail.html'
+#    model = Post
+
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):

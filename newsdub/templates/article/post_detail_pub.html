@@ -6,7 +6,7 @@
 
 {% block content %}
 {#    This if statement should be replaced by a model field.#}
-    {% if object.slug == 'crosstrek-deluxe-another' %}
+    {% if object.slug == 'crosstrek-winner' %}
         <div class="format_a">
             <div class="main_image"><a href="{{ object.image.url }}"><img src="{% thumbnail object.image 445x285 crop %}" alt=""/></a></div>
             <h1>{{ object.title }}</h1>

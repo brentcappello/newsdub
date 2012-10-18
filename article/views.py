@@ -13,20 +13,16 @@ from django.contrib.auth.decorators import login_required
 # other tries did not
 @login_required
 def post_create(request, template_name='article/post_form.html'):
-    the_creator = request.user
-
-    if request.POST:
-        form = PostForm(the_creator, request.POST, request.FILES)
-        if form.is_valid():
-            article = form.save(commit=False)
-            article.author = request.user
-            article.save()
-            form.save_m2m()
-            #        msg = "Article saved successfully"
-            #        messages.success(request, msg, fail_silently=True)
-            return redirect('post_list')
-    else:
-        form = PostForm(the_creator)
+    form = PostForm(request.POST, request.FILES)
+    form.fields['newsletters'].queryset = Newsletter.objects.filter(created_by=request.user)
+    if form.is_valid():
+        article = form.save(commit=False)
+        article.author = request.user
+        article.save()
+        form.save_m2m()
+        #        msg = "Article saved successfully"
+        #        messages.success(request, msg, fail_silently=True)
+        return redirect('post_list')
     return render(request, template_name, {'form': form,})
 
 #def post_create(request):
@@ -58,10 +54,12 @@ def publication_create(request, template_name='article/publication_form.html'):
 @login_required
 def newsletter_create(request, template_name='article/newsletter_form.html'):
     form = NewsletterForm(request.POST or None)
+    form.fields['publication'].queryset = Publication.objects.filter(created_by=request.user)
     if form.is_valid():
         newsletter = form.save(commit=False)
         newsletter.created_by = request.user
         newsletter.save()
+        form.save_m2m()
         #        msg = "Article saved successfully"
         #        messages.success(request, msg, fail_silently=True)
         return redirect('post_list')
@@ -212,6 +210,11 @@ class NewsletterUpdateView(LoginRequiredMixin, UpdateView):
     model = Newsletter
     success_url = reverse_lazy('newsletter_list')
     form_class = NewsletterForm
+
+    def get_form(self, form_class):
+        form = super(NewsletterUpdateView,self).get_form(form_class) #instantiate using parent
+        form.fields['publication'].queryset = Publication.objects.filter(created_by=self.request.user)
+        return form
 
 
 class NewsletterDeleteView(LoginRequiredMixin, DeleteView):

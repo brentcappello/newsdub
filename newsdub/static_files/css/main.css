@@ -580,7 +580,7 @@ textarea {
 .format_a .main_image {
     float: right;
     border: 1px solid #000000;
-    box-shadow: 0 0 2px 0;
+    box-shadow: 0 0 4px 0;
     margin: 0 0 20px 20px;
 }
 

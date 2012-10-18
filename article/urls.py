@@ -27,7 +27,7 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('article.views',
     url(r'^publications/$', PublicationListView.as_view(), name='publication_list'),
-    url(r'^issues/(?P<slug>.*)/$', 'issue_list', name='issue_list' ),
+    url(r'^publications/(?P<slug>.*)/$', 'issue_list', name='issue_list' ),
 )
 
 

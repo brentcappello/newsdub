@@ -11,7 +11,7 @@
             <th></th>
             {% for issue in object_list %}
                 <tr class="{% cycle odd,even %}">
-                    <td><b><a href="grid/{{ issue.get_absolute_url }}">{{ issue.title }}</a></b><br />
+                    <td><b><a href="../../grid/{{ issue.get_absolute_url }}">{{ issue.title }}</a></b><br />
 
                     </td>
                     <td nowrap>{{ issue.publish|date }}</td>

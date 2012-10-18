@@ -5,11 +5,14 @@
 Welcome back {{ user.first_name }}!
     <br/>
     <ul>
-    <li>Click Here to view your Profile:<a href="{% url account %}">My Profile</a> </li>
-
-    <li>Click here to add an article:<a href="{% url post %}">Write an Article</a></li>
-        <li>Click here to view your Newsletters:<a href="{% url newsletter_list %}">View your Newsletters</a></li>
+        <li>Click Here to view your Profile:<a href="{% url account %}">My Profile</a> </li>
+        <br>
+        <li>Click here to Create a Publication:<a href="{% url publication_create %}">Create a Publication</a></li>
+        <li>Click here to add a Newsletter Issue:<a href="{% url newlsetter_create %}">Create a Newsletter</a></li>
+        <li>Click here to add an article:<a href="{% url post %}">Write an Article</a></li>
+        <br>
+        <li>Click here to view your Publications:<a href="{% url publication_list %}">View Your Publications</a></li>
+        <li>Click here to view your Newsletters:<a href="{% url newsletter_list %}">View all your Newsletters</a></li>
         <li>Click here to view your articles:<a href="{% url post_list %}">View Article list</a></li>
-    <li>Click here to add a Newsletter:<a href="{% url newlsetter_create %}">Create a Newsletter</a></li>
     </ul>
 {% endblock %}

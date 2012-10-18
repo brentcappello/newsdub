@@ -1,9 +1,14 @@
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from article.models import Post, Newsletter
+from article.models import Post, Newsletter, Publication
 from django.forms.fields import MultipleChoiceField
 from django.forms.widgets import CheckboxSelectMultiple, TextInput, FileInput
 from django.forms import ModelChoiceField
+
+class PublicationForm(ModelForm):
+    class Meta:
+        model = Publication
+        exclude = ('created_by', 'publish', 'created_at',)
 
 class NewsletterForm(ModelForm):
     class Meta:

@@ -5,7 +5,8 @@ from article.views import *
 
 
 urlpatterns = patterns('',
-    url(r'^create/$', 'article.views.newsletter_create', name='newlsetter_create'),
+    url(r'^create/$', 'article.views.publication_create', name='publication_create'),
+    url(r'^create/issue/$', 'article.views.newsletter_create', name='newlsetter_create'),
 #    url(r'^newsletters/$', NewsletterListView.as_view(), name='newsletter_list'),
     url(r'^update_news/(?P<slug>.*)/$', NewsletterUpdateView.as_view(), name="newsletter_update",),
     url(r'^delete_newsletter/(?P<slug>.*)/$', NewsletterDeleteView.as_view(), name="newsletter_delete",),
@@ -22,8 +23,13 @@ urlpatterns = patterns('',
 
 #    url(r'^list/$', ListView.as_view(model=Post, context_object_name="post_list",)),
 #    url(r'^add/$', CreateView.as_view(model=Post, context_object_name="add-article",)),
-
 )
+
+urlpatterns += patterns('article.views',
+    url(r'^publications/$', PublicationListView.as_view(), name='publication_list'),
+    url(r'^issues/(?P<slug>.*)/$', 'issue_list', name='issue_list' ),
+)
+
 
 urlpatterns += patterns('article.views',
     url(r'^$', NewsletterListView.as_view(), name='newsletter_list'),

@@ -1,7 +1,7 @@
 {% extends "base_dashboard.html" %}
 
 {% load i18n %}
-{% block title %}Create an Issue {% endblock %}
+{% block title %}Create an Newsletter {% endblock %}
 {% block js_top %}<script src="{{ STATIC_URL }}js/urlslugger.js"></script>{% endblock %}
 
 {% block content %}
@@ -13,7 +13,6 @@
                         <li><label class="newsletter_lb">Slug:</label> {{ form.slug }}</li>
                         <li><label>Description:</label> {{ form.description }}</li>
                         <li><label>Status:</label> {{ form.status }}</li>
-                        <li><label>Newsletters:</label> {{ form.publication }}</li>
                     </ul>
                 <button class="btn" type="submit">{% trans "Create Newsletter" %}</button>
             </form>

@@ -13,16 +13,20 @@ from django.contrib.auth.decorators import login_required
 # other tries did not
 @login_required
 def post_create(request, template_name='article/post_form.html'):
-    form = PostForm(request.POST, request.FILES)
-    form.fields['newsletters'].queryset = Newsletter.objects.filter(created_by=request.user)
-    if form.is_valid():
-        article = form.save(commit=False)
-        article.author = request.user
-        article.save()
-        form.save_m2m()
-        #        msg = "Article saved successfully"
-        #        messages.success(request, msg, fail_silently=True)
-        return redirect('post_list')
+    the_creator = request.user
+
+    if request.POST:
+        form = PostForm(the_creator, request.POST, request.FILES)
+        if form.is_valid():
+            article = form.save(commit=False)
+            article.author = request.user
+            article.save()
+            form.save_m2m()
+            #        msg = "Article saved successfully"
+            #        messages.success(request, msg, fail_silently=True)
+            return redirect('post_list')
+    else:
+        form = PostForm(the_creator)
     return render(request, template_name, {'form': form,})
 
 #def post_create(request):

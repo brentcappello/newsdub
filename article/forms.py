@@ -26,9 +26,9 @@ class PostForm(ModelForm):
         }
 
     #this took fucking foooooorever to figure out - I still not sure how it works lol.
-#    def __init__(self, created_by=None, *args, **kwargs):
-#        super(PostForm, self).__init__(*args, **kwargs)
-#        self.fields['newsletters'].queryset = Newsletter.objects.filter(created_by=created_by)
+    def __init__(self, created_by=None, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.fields['newsletters'].queryset = Newsletter.objects.filter(created_by=created_by)
 
 
 

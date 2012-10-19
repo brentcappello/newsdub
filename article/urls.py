@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^create/issue/$', 'article.views.newsletter_create', name='newlsetter_create'),
 #    url(r'^newsletters/$', NewsletterListView.as_view(), name='newsletter_list'),
     url(r'^update_news/(?P<slug>.*)/$', NewsletterUpdateView.as_view(), name="newsletter_update",),
+    url(r'^update_publication/(?P<slug>.*)/$', PublicationUpdateView.as_view(), name="publication_update",),
     url(r'^delete_newsletter/(?P<slug>.*)/$', NewsletterDeleteView.as_view(), name="newsletter_delete",),
 #    url(r'^newsletter/(?P<slug>.*)/$', NewsletterPostListView.as_view(), name='newsletter_post_list'),
 

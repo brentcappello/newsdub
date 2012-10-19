@@ -208,6 +208,12 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 #        context['newsletter_post_list'] = self.newsletter_articles
 #        return context
 
+class PublicationUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'article/publication_update.html'
+    model = Publication
+    success_url = reverse_lazy('publication_list')
+    form_class = PublicationForm
+
 
 class NewsletterUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'article/newsletter_update.html'

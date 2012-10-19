@@ -52,7 +52,7 @@ def publication_create(request, template_name='article/publication_form.html'):
         publication.save()
         #        msg = "Article saved successfully"
         #        messages.success(request, msg, fail_silently=True)
-        return redirect('post_list')
+        return redirect('publication_list')
     return render(request, template_name, {'form': form,})
 
 @login_required
@@ -66,7 +66,7 @@ def newsletter_create(request, template_name='article/newsletter_form.html'):
         form.save_m2m()
         #        msg = "Article saved successfully"
         #        messages.success(request, msg, fail_silently=True)
-        return redirect('post_list')
+        return redirect('newsletter_list')
     return render(request, template_name, {'form': form,})
 
 
@@ -225,6 +225,9 @@ class NewsletterDeleteView(LoginRequiredMixin, DeleteView):
     model = Newsletter
     success_url = reverse_lazy('newsletter_list')
 
+class PublicationDeleteView(LoginRequiredMixin, DeleteView):
+    model = Publication
+    success_url = reverse_lazy('publication_list')
 
 #class PostDetailView(LoginRequiredMixin, ListView):
 #    template_name = 'article/post_detail.html'

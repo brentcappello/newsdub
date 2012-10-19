@@ -4,6 +4,7 @@
 {% block title %}Your Newsletters{% endblock %}
 
 {% block content %}
+    {% if object_list %}
         <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="700px">
             <th>Title</th>
             <th>Published On</th>
@@ -38,5 +39,7 @@
                 </tr>
             {% endfor %}
         </table>
-
+    {% else %}
+        <p>You have no Issues in this publicaton. <a href="{% url newlsetter_create %}">Create one now</a> </p>
+    {% endif %}
 {% endblock %}

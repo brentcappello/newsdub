@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^article/pub/(?P<author>.*)/(?P<slug>.*)/$', 'article.views.article_pub', name='post_detail_pub'),
     url(r'^article/(?P<slug>.*)/$', DetailView.as_view(model=Post, context_object_name="post_detail",), name='post_detail'),
     url(r'^delete_article/(?P<slug>.*)/$', PostDeleteView.as_view(), name="post_delete"),
+    url(r'^delete_publication/(?P<slug>.*)/$', PublicationDeleteView.as_view(), name="publication_delete",),
 
 #    url(r'^list/$', ListView.as_view(model=Post, context_object_name="post_list",)),
 #    url(r'^add/$', CreateView.as_view(model=Post, context_object_name="add-article",)),

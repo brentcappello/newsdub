@@ -9,8 +9,10 @@
     {% if object.slug == 'crosstrek-winner' %}
         <div class="format_a">
             <div class="main_image"><a href="{{ object.image.url }}"><img src="{% thumbnail object.image 445x285 crop %}" alt=""/></a></div>
-            <h1>{{ object.title }}</h1>
+           <div class="title"><h1>{{ object.title }}</h1></div>
+            <div class="content_a">
             <p>{{ object.body|removetags:"script, link, style"|safe }}</p>
+            </div>
             <br/>
             <ul><strong>Tags:</strong>
                 {% for tag in object.tags.all %}

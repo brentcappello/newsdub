@@ -5,9 +5,11 @@ from article.views import *
 
 
 urlpatterns = patterns('',
-    url(r'^create/$', 'article.views.newsletter_create', name='newlsetter_create'),
+    url(r'^create/$', 'article.views.publication_create', name='publication_create'),
+    url(r'^create/issue/$', 'article.views.newsletter_create', name='newlsetter_create'),
 #    url(r'^newsletters/$', NewsletterListView.as_view(), name='newsletter_list'),
     url(r'^update_news/(?P<slug>.*)/$', NewsletterUpdateView.as_view(), name="newsletter_update",),
+    url(r'^update_publication/(?P<slug>.*)/$', PublicationUpdateView.as_view(), name="publication_update",),
     url(r'^delete_newsletter/(?P<slug>.*)/$', NewsletterDeleteView.as_view(), name="newsletter_delete",),
 #    url(r'^newsletter/(?P<slug>.*)/$', NewsletterPostListView.as_view(), name='newsletter_post_list'),
 
@@ -19,11 +21,17 @@ urlpatterns = patterns('',
     url(r'^article/pub/(?P<author>.*)/(?P<slug>.*)/$', 'article.views.article_pub', name='post_detail_pub'),
     url(r'^article/(?P<slug>.*)/$', DetailView.as_view(model=Post, context_object_name="post_detail",), name='post_detail'),
     url(r'^delete_article/(?P<slug>.*)/$', PostDeleteView.as_view(), name="post_delete"),
+    url(r'^delete_publication/(?P<slug>.*)/$', PublicationDeleteView.as_view(), name="publication_delete",),
 
 #    url(r'^list/$', ListView.as_view(model=Post, context_object_name="post_list",)),
 #    url(r'^add/$', CreateView.as_view(model=Post, context_object_name="add-article",)),
-
 )
+
+urlpatterns += patterns('article.views',
+    url(r'^publications/$', PublicationListView.as_view(), name='publication_list'),
+    url(r'^publications/(?P<slug>.*)/$', 'issue_list', name='issue_list' ),
+)
+
 
 urlpatterns += patterns('article.views',
     url(r'^$', NewsletterListView.as_view(), name='newsletter_list'),

@@ -5,6 +5,7 @@
 {% load custom_filters %}
 {% block title %}Your Articles in {{ newsletter.title }}{% endblock %}
 {% block content %}
+{% if object_list %}
     <div class="">
         {% for post in object_list %}
 {#        <div class="newsletter_preview">#}
@@ -37,5 +38,13 @@
 
 <div class="clearfix"></div><br/>
 
+
     <p>Switch View: <a href="/newsletters/tabular/{{ newsletter.get_absolute_url }}">List</a></p>
+   <br>
+    <p>Switch View: <a href="/newsletters/pub/{{ user.username }}/{{ newsletter.get_absolute_url }}">Public Facing</a></p>
+{% else %}
+    <p>You have no articles in this issue. <a href="{% url post %}">Create one now</a> </p>
+    <br>
+    <p>Or... <a href="{% url post_list %}">Add one now</a> </p>
+{% endif %}
 {% endblock %}

@@ -1,23 +1,23 @@
 {% extends 'base_dashboard.html' %}
 {% load switchcase %}
 {% load custom_filters %}
-{% block title %}Your Newsletters{% endblock %}
+{% block title %}Your Publications{% endblock %}
 
 {% block content %}
-    {% if object_list %}
         <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="700px">
             <th>Title</th>
-            <th>Published On</th>
+            <th>Created On</th>
             <th>Status</th>
             <th></th>
-            {% for newsletter in object_list %}
+        {% if object_list %}
+            {% for publication in object_list %}
                 <tr class="{% cycle odd,even %}">
-                    <td><b><a href="grid/{{ newsletter.get_absolute_url }}">{{ newsletter.title }}</a></b><br />
+                    <td><b><a href="{{ publication.get_absolute_url }}">{{ publication.title }}</a></b><br />
 
                     </td>
-                    <td nowrap>{{ newsletter.publish|date }}</td>
+                    <td nowrap>{{ publication.created_at|date }}</td>
                     <td>
-                        {% with newsletter.status as status %}
+                        {% with publication.status as status %}
                             {% switch status %}
                                 {% case 2 %}Published{% endcase %}
                                 {% case 1 %}Draft{% endcase %}
@@ -25,21 +25,22 @@
                         {% endwith %}
                     </td>
                     <td width="50px" align="center">
-                        <a href="{% url newsletter_update newsletter.slug %}">
+                        <a href="{% url publication_update publication.slug %}">
                             <img src="{{ STATIC_URL }}images/pencil.png" alt="edit" border="0" title="Edit Post"  />
                         </a>
                     </td>
                     <td align="right">
 
-                        <form action="{% url newsletter_delete newsletter.slug %}" method="POST">{% csrf_token %}
+                        <form action="{% url publication_delete publication.slug %}" method="POST">{% csrf_token %}
                             <input type="image" src="{{ STATIC_URL }}images/delete.png" alt="delete" border="0" title="Delete Post" />
                             <input type="hidden" name="action" value="delete"/>
                         </form>
                     </td>
                 </tr>
             {% endfor %}
+        {% else %}
+            <p>You have no publications. <a href="{% url publication_create %}">Create one now:</a> </p>
+        {% endif %}
         </table>
-    {% else %}
-        <p>You have no Issues in this publicaton. <a href="{% url newlsetter_create %}">Create one now</a> </p>
-    {% endif %}
+
 {% endblock %}

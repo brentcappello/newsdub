@@ -1,6 +1,6 @@
 from dashboard.views import LoginRequiredMixin
-from article.models import Post, Newsletter
-from article.forms import PostForm, NewsletterForm, PostFormUpdate
+from article.models import Post, Newsletter, Publication
+from article.forms import PostForm, NewsletterForm, PostFormUpdate, PublicationForm
 from django.views.generic.edit import ModelFormMixin
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
@@ -44,15 +44,29 @@ def post_create(request, template_name='article/post_form.html'):
 #        form = PostForm(newsletter_user)
 #    return render(request, 'article/post_form.html', {'form': form,})
 @login_required
+def publication_create(request, template_name='article/publication_form.html'):
+    form = PublicationForm(request.POST or None)
+    if form.is_valid():
+        publication = form.save(commit=False)
+        publication.created_by = request.user
+        publication.save()
+        #        msg = "Article saved successfully"
+        #        messages.success(request, msg, fail_silently=True)
+        return redirect('publication_list')
+    return render(request, template_name, {'form': form,})
+
+@login_required
 def newsletter_create(request, template_name='article/newsletter_form.html'):
     form = NewsletterForm(request.POST or None)
+    form.fields['publication'].queryset = Publication.objects.filter(created_by=request.user)
     if form.is_valid():
         newsletter = form.save(commit=False)
         newsletter.created_by = request.user
         newsletter.save()
+        form.save_m2m()
         #        msg = "Article saved successfully"
         #        messages.success(request, msg, fail_silently=True)
-        return redirect('post_list')
+        return redirect('newsletter_list')
     return render(request, template_name, {'form': form,})
 
 
@@ -88,6 +102,24 @@ class PostListView(LoginRequiredMixin, ListView):
         context['post_list'] = self.authorpost
         return context
 
+class PublicationListView(LoginRequiredMixin, ListView):
+    template_name = 'article/publication_list.html'
+
+    def get_queryset(self):
+        self.authorpost = Publication.objects.filter(created_by=self.request.user)
+        return self.authorpost
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(PublicationListView, self).get_context_data(*args, **kwargs)
+        context['publication_list'] = self.authorpost
+        return context
+
+@login_required
+def issue_list(request, slug):
+    issue = get_object_or_404(Publication, slug=slug, created_by=request.user)
+    return render(request, 'article/issue_list.html', {
+        'object_list': issue.newsletter_set.all(),
+        })
 
 class NewsletterListView(LoginRequiredMixin, ListView):
     template_name = 'article/newsletter_list.html'
@@ -176,6 +208,12 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 #        context['newsletter_post_list'] = self.newsletter_articles
 #        return context
 
+class PublicationUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'article/publication_update.html'
+    model = Publication
+    success_url = reverse_lazy('publication_list')
+    form_class = PublicationForm
+
 
 class NewsletterUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'article/newsletter_update.html'
@@ -183,11 +221,19 @@ class NewsletterUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('newsletter_list')
     form_class = NewsletterForm
 
+    def get_form(self, form_class):
+        form = super(NewsletterUpdateView,self).get_form(form_class) #instantiate using parent
+        form.fields['publication'].queryset = Publication.objects.filter(created_by=self.request.user)
+        return form
+
 
 class NewsletterDeleteView(LoginRequiredMixin, DeleteView):
     model = Newsletter
     success_url = reverse_lazy('newsletter_list')
 
+class PublicationDeleteView(LoginRequiredMixin, DeleteView):
+    model = Publication
+    success_url = reverse_lazy('publication_list')
 
 #class PostDetailView(LoginRequiredMixin, ListView):
 #    template_name = 'article/post_detail.html'

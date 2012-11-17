@@ -151,6 +151,8 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'django_sorting',
     'pagination',
+    'dynamic_scraper',
+    'newsscrape',
 
 )
 DJANGO_WYSIWYG_FLAVOR = 'ckeditor'

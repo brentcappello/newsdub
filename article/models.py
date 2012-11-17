@@ -72,7 +72,7 @@ class Post(models.Model):
     allow_comments = models.BooleanField(default=True)
     publish = models.DateTimeField(default=datetime.now)
     created_at = models.DateTimeField(default=datetime.now)
-    newsletters = models.ManyToManyField(Newsletter, help_text='good job')
+    newsletters = models.ManyToManyField(Newsletter, help_text='newsletters')
     image = models.ImageField(upload_to=get_image_path, blank=True)
     tags = TaggableManager(blank=True)
     #    updated_at = models.DateTimeField(default=datetime.now)

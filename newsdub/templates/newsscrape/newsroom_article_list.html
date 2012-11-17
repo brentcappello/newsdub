@@ -1,0 +1,97 @@
+{% extends 'base_dashboard.html' %}
+
+{% load switchcase %}
+{% load custom_filters %}
+{% block title %}Newsroom Articles{% endblock %}
+{% block js_top %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+{% endblock %}
+{% block additional_head %}
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+    <script>
+        $(function() {
+            $( "#dialog-confirm" ).dialog({
+                autoOpen: false,
+                resizable: false,
+                height:190,
+                width:350,
+                modal: true,
+                show: 'fade',
+                buttons: {
+                    "Delete Article": function() {
+                        $( this ).dialog( $("#opener").submit() );
+                    },
+                    Cancel: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+            $( ".opener" ).click(function() {
+                $( "#dialog-confirm" ).dialog( "open" );
+                return false;
+            });
+        });
+    </script>
+{% endblock %}
+
+{% load pagination_tags %}
+{% load sorting_tags %}
+{% block content %}
+    {% autosort newsroom_article_list %}
+    {% autopaginate newsroom_article_list 10 %}
+    <div class="list_layout">
+        <table cellpadding="5" cellspacing="0" border="0" class="list_table" width="700px">
+            <thead>
+            <th class="title">{% anchor title "Title" %}</th>
+            <th></th>
+            <th class="list_status"></th>
+            <th></th>
+            <th class="list_tags"></th>
+            </thead>
+            {% for article in newsroom_article_list %}
+                <tr class="{% cycle odd,even %}">
+                    <td class="title"><a class="title_link" href="{{ article.get_absolute_url }}">{{ article.title }}</a><br />
+                        <div class="row_actions">
+                            <div style="float: left">
+                                <a class="button_link opener" href="#">Add Article to Newsletter</a>
+                            </div>
+                            <div style="float: left; padding: 0 5px 0 5px; color:#dddddd;"> | </div>
+                            <div style="float: left;">
+                                <!--Button here -->
+                            </div>
+                        </div>
+                    </td>
+                    <td nowrap></td>
+                    <td>
+
+                    </td>
+                    <td class="newsletters">
+
+                    </td>
+                    <td class="tags">
+
+                    </td>
+                    <td width="50px" align="center">
+
+                    </td>
+                    <td align="right">
+
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% paginate %}
+
+
+
+
+
+        <div id="dialog-confirm" title="Choose a Publication to add the article too">
+            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This article will be permanently deleted and cannot be recovered.</p>
+        </div>
+
+
+{% endblock %}

@@ -3,6 +3,7 @@ from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from scrapy.contrib.djangoitem import DjangoItem
 from dynamic_scraper.models import Scraper, SchedulerRuntime
+from article.models import Newsletter
 
 
 class NewsWebsite(models.Model):
@@ -21,6 +22,7 @@ class Article(models.Model):
     description = models.TextField(blank=True)
     url = models.URLField()
     thumbnail = models.CharField(max_length=200)
+    newsletters = models.ManyToManyField(Newsletter)
     checker_runtime = models.ForeignKey(SchedulerRuntime, blank=True, null=True, on_delete=models.SET_NULL)
     
     def __unicode__(self):

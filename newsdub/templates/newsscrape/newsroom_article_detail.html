@@ -1,0 +1,14 @@
+{% extends 'base_dashboard.html' %}
+
+
+{% block title %}Article: {{ newsroom_article_detail.title|truncatechars:35 }}{% endblock %}
+
+{% block content %}
+    <h1>{{ newsroom_article_detail.title }}</h1>
+    <p>{{ newsroom_article_detail.description|removetags:"script, link, style"|safe }}</p>
+
+{#I need to move the thumbnail directory into a better location#}
+    <a href="{{ newsroom_article_detail.url }}"><img src="{{ STATIC_URL }}thumbnails/{{ newsroom_article_detail.thumbnail }}" alt=""/></a><br/>
+
+{#    <a href="{% url post_update object.slug%}">Edit this article</a>#}
+{% endblock %}

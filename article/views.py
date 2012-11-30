@@ -8,6 +8,8 @@ from django.http import Http404
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from itertools import chain
 
 # OK this still confuses me how this works but my million
 # other tries did not
@@ -146,8 +148,14 @@ def newsletter_tabular(request, slug):
 @login_required
 def newsletter_grid(request, slug):
     newsletter = get_object_or_404(Newsletter, slug=slug, created_by=request.user)
+    object_list = newsletter.post_set.all()
+    object_news = newsletter.article_set.all()
+#    for item in object_news:
+#        item_thumb = item.thumbnail
+#    object_thumb = settings.MEDIA_URL + 'newsroom/thumbnails/'
+    chained_object = chain(object_list, object_news)
     return render(request, 'article/newsletter_post_grid.html', {
-        'object_list': newsletter.post_set.all(),
+        'object_list': chained_object,
         'newsletter': newsletter,
         })
 

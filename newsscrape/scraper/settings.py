@@ -29,7 +29,8 @@ ITEM_PIPELINES = [
     'newsscrape.scraper.pipelines.DjangoWriterPipeline',
 ]
 
-IMAGES_STORE = os.path.join(PROJECT_ROOT, '../thumbnails')
+#before this was just ../thumbnails
+IMAGES_STORE = os.path.join(PROJECT_ROOT, '../../newsdub/media')
 
 IMAGES_THUMBS = {
     'small': (170, 170),

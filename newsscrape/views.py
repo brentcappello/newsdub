@@ -10,3 +10,4 @@ class ArticleDetailView(DetailView):
     context_object_name = 'newsroom_article_detail'
     template_name = 'newsscrape/newsroom_article_detail.html'
     queryset = Article.objects.all()
+

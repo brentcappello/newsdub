@@ -19,8 +19,8 @@
                 <div id="f1_card" class="preview_tile">
                     <div class="front face">
                     {% if post.image %}
-                        <a href="#"><img src="{% thumbnail post.image 150x150 crop %}" alt=""/></a>
-                    {% else %}
+                        <a href="#"><img src="{% thumbnail post.image 150x150 crop %}" alt=""></a>
+                        {% else %}
                            <a href="#"><img src="{% thumbnail post.thumbnail 150x150 crop upscale %}" alt=""/></a>
 {#                        <a href="#"><img src="{% thumbnail object_thumbnail 50x50 crop %}" alt=""/></a>#}
 {#                         <a href="#"><img src="{{ object_thumbnail }}" alt=""/></a>#}

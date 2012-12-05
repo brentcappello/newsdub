@@ -162,8 +162,11 @@ def newsletter_grid(request, slug):
 def newsletter_pub(request, slug, author):
     theauthor = User.objects.get(username=author).id
     newsletter = get_object_or_404(Newsletter, slug=slug, created_by=theauthor)
+    object_list = newsletter.post_set.all()
+    object_news = newsletter.article_set.all()
+    chained_object = chain(object_list, object_news)
     return render(request, 'article/newsletter_post_pub.html', {
-        'object_list': newsletter.post_set.all(),
+        'object_list': chained_object,
         'newsletter': newsletter,
         })
 

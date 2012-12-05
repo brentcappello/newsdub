@@ -6,10 +6,18 @@
 {% block content %}
         {% for post in object_list %}
                 <div class="preview_tile_pub">
+                    {% if post.image %}
                     <a href=""><img src="{% thumbnail post.image 260x260 crop %}" alt=""/></a>
+                    {% else %}
+                    <a href=""><img src="{% thumbnail post.thumbnail 260x260 crop upscale %}" alt=""/></a>
+                    {% endif %}
                     <div class="preview_title_pub"><h2>{{ post.title|truncatechars:38 }}</h2></div>
                     <div class="preview_excerp_pub">
+                    {% if post.tease %}
                         <p>{{ post.tease|truncatechars:150 }}</p>
+                    {% else %}
+                        <p>{{ post.description|truncatechars:150 }}</p>
+                    {% endif %}
                         <span class="preview_read_pub"><a href="{{ post.get_absolute_url_public }}">READ</a></span>
                     </div>
                 </div>

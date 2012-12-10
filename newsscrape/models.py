@@ -24,9 +24,25 @@ class Article(models.Model):
     thumbnail = models.CharField(max_length=200)
     newsletters = models.ManyToManyField(Newsletter)
     checker_runtime = models.ForeignKey(SchedulerRuntime, blank=True, null=True, on_delete=models.SET_NULL)
-    
+
+
+    class Meta:
+        ordering = ["-id"]
+
     def __unicode__(self):
         return self.title
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('newsroom_detail', None, {
+            'pk': self.id
+        })
+
+    @models.permalink
+    def get_absolute_url_public(self):
+        return ('newsroom_detail', None, {
+            'pk': self.id
+        })
 
 
 class ArticleItem(DjangoItem):

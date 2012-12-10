@@ -20,7 +20,7 @@
                 modal: true,
                 show: 'fade',
                 buttons: {
-                    "Delete Article": function() {
+                    "Add Article": function() {
                         $( this ).dialog( $("#opener").submit() );
                     },
                     Cancel: function() {
@@ -52,14 +52,15 @@
             </thead>
             {% for article in newsroom_article_list %}
                 <tr class="{% cycle odd,even %}">
-                    <td class="title"><a class="title_link" href="{{ article.get_absolute_url }}">{{ article.title }}</a><br />
+                    <td class="title"><a class="title_link" href="{% url newsroom_update article.id %}">{{ article.title }}</a><br />
                         <div class="row_actions">
                             <div style="float: left">
-                                <a class="button_link opener" href="#">Add Article to Newsletter</a>
+                                <a class="button_link opener" href="#">Quick Add Article</a>
+
                             </div>
                             <div style="float: left; padding: 0 5px 0 5px; color:#dddddd;"> | </div>
                             <div style="float: left;">
-                                <!--Button here -->
+<!-- some link goes here -->
                             </div>
                         </div>
                     </td>
@@ -89,8 +90,17 @@
 
 
 
-        <div id="dialog-confirm" title="Choose a Publication to add the article too">
-            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This article will be permanently deleted and cannot be recovered.</p>
+        <div id="dialog-confirm" title="Choose a Publication">
+            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;">
+            </span>Add this Article to your newsletter</p>
+
+{#                              <form id="opener" class="opener" action="{% url newsroom_update article.pk %}" method="POST">{% csrf_token %}#}
+{#                                    <li><label>Newsletters:</label> {{ article.newsletters }}</li>#}
+{##}
+{#                                    <input type=submit name="delete" value="Add Article" class="button_link" />#}
+{#                                    <input type="hidden" name="path" value="{{ request.path }}"/>#}
+{#                                    <input type="hidden" name="action" value="delete"/>#}
+{#                                </form>#}
         </div>
 
 

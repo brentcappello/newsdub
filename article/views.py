@@ -175,12 +175,16 @@ def newsletter_pub(request, slug, author):
 #    template_name = 'article/post_detail_pub.html'
 #    model = Post
 
-def article_pub(request, slug, author):
+def article_pub(request, slug, author, layout=None):
+    layout_style = layout
     theauthor = User.objects.get(username=author).id
     post = get_object_or_404(Post, slug=slug, author=theauthor)
     return render(request, 'article/post_detail_pub.html', {
         'object': post,
+        'layout' : layout_style,
         })
+
+
 
 #class NewsletterPostListView(LoginRequiredMixin, ListView):
 #    template_name = 'article/newsletter_post_tabular.html'

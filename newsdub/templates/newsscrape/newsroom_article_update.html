@@ -1,0 +1,25 @@
+{% extends 'base_dashboard.html' %}
+
+
+{% block title %}Article: {{ newsroom_article_update.title|truncatechars:35 }}{% endblock %}
+{% load thumbnail %}
+{% block content %}
+    <h1>{{ newsroom_article_update.title }}</h1>
+    <p>{{ newsroom_article_update.description|removetags:"script, link, style"|safe }}</p>
+
+{#I need to move the thumbnail directory into a better location#}
+  <img src="{{ MEDIA_URL }}{{ newsroom_article_update.thumbnail }}" alt=""/><br/>
+    Or we can scale it ???
+  <a href="#"><img src="{% thumbnail newsroom_article_update.thumbnail 150x150 crop upscale %}" alt=""/></a>
+
+{#    <a href="{% url post_update object.slug%}">Edit this article</a>#}
+
+<form id="newsroom_article_update" method="post">
+{% csrf_token %}
+{{ form.errors }}
+
+<li><label>Newsletters:</label> {{ form.newsletters }}</li>
+<input class="btn" type="submit" value="newsletter">Save</button>
+
+</form>
+{% endblock %}

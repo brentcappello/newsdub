@@ -14,5 +14,7 @@ Welcome back {{ user.first_name }}!
         <li>Click here to view your Publications:<a href="{% url publication_list %}">View Your Publications</a></li>
         <li>Click here to view your Newsletters:<a href="{% url newsletter_list %}">View all your Newsletters</a></li>
         <li>Click here to view your articles:<a href="{% url post_list %}">View Article list</a></li>
+        <br>
+         <li>Click Here to view the Newsroom: <a href="{% url newsroom_list %}"> View Newsroom Articles</a> </li>
     </ul>
 {% endblock %}
